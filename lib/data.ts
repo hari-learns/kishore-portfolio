@@ -249,6 +249,83 @@ export const futureVision = {
   ],
 } as const;
 
+// Photographs from training, research, teaching, and conferences.
+// `src` is the full-size image; a matching thumbnail lives in /journey/thumb/.
+export const journey = [
+  {
+    slug: "white-coat",
+    category: "Milestone",
+    title: "White coat ceremony",
+    caption:
+      "Receiving the white coat at the Medical University of Łódź — the point where studying medicine becomes practising it.",
+    orientation: "landscape",
+  },
+  {
+    slug: "pcsk9-case",
+    category: "Research",
+    title: "Presenting a cardiology case report",
+    caption:
+      "Presenting author on “Targeted PCSK9 Inhibitor Therapy in a Statin-Intolerant Patient with Elevated Lipoprotein(a) Following TAVI” — Biegański Hospital, Łódź.",
+    orientation: "landscape",
+  },
+  {
+    slug: "polytrauma-case",
+    category: "Research",
+    title: "Polytrauma case report",
+    caption:
+      "Co-author on a polytrauma case following a motorcycle accident, with the Department of Arthroscopy, Minimally Invasive Surgery and Sports Traumatology.",
+    orientation: "portrait",
+  },
+  {
+    slug: "mircim",
+    category: "Conference",
+    title: "MIRCIM 2026",
+    caption:
+      "At the McMaster International Review Course in Internal Medicine — evidence-based medicine taught by the people writing the evidence.",
+    orientation: "portrait",
+  },
+  {
+    slug: "anatomy-session",
+    category: "Teaching",
+    title: "Master Your Anatomy",
+    caption:
+      "Facilitating a peer anatomy session — skeleton, Netter's atlas, and a room of students reasoning through it together.",
+    orientation: "landscape",
+  },
+  {
+    slug: "history-taking",
+    category: "Teaching",
+    title: "History taking & clinical examination",
+    caption:
+      "Teaching the fundamentals — how a structured history and examination shape the differential before any test is ordered.",
+    orientation: "portrait",
+  },
+  {
+    slug: "library",
+    category: "Study",
+    title: "In the library",
+    caption:
+      "The unglamorous half of medicine — long hours with the textbooks that make the clinical hours make sense.",
+    orientation: "portrait",
+  },
+  {
+    slug: "pharmacology",
+    category: "Study",
+    title: "Pharmacology",
+    caption:
+      "Working through Lippincott's Illustrated Reviews — the groundwork behind an interest in clinical pharmacology.",
+    orientation: "landscape",
+  },
+  {
+    slug: "polish-academy",
+    category: "Language",
+    title: "Medical Polish",
+    caption:
+      "Studying medical Polish with Akademia Polskiego — because the patient in front of you deserves to be understood in their own language.",
+    orientation: "portrait",
+  },
+] as const;
+
 export const contact = {
   email: "kishore@example.com", // PLACEHOLDER
   whatsappNumber: "10000000000", // PLACEHOLDER — digits only, country code first

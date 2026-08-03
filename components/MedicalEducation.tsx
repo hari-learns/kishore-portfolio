@@ -4,7 +4,7 @@ import { medicalEducation } from "@/lib/data";
 
 export default function MedicalEducation() {
   return (
-    <Section id="teaching">
+    <Section id="teaching" subtle>
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <SectionHeading
           eyebrow="Medical Education"

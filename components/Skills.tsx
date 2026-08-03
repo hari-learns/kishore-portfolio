@@ -4,7 +4,7 @@ import { skills } from "@/lib/data";
 
 export default function Skills() {
   return (
-    <Section id="skills" subtle>
+    <Section id="skills">
       <SectionHeading eyebrow="Skills" title="Competencies" />
 
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">

@@ -6,6 +6,7 @@ import ClinicalExperience from "@/components/ClinicalExperience";
 import Research from "@/components/Research";
 import Leadership from "@/components/Leadership";
 import Conferences from "@/components/Conferences";
+import Journey from "@/components/Journey";
 import MedicalEducation from "@/components/MedicalEducation";
 import Skills from "@/components/Skills";
 import FutureVision from "@/components/FutureVision";
@@ -25,6 +26,7 @@ export default function Home() {
         <Research />
         <Leadership />
         <Conferences />
+        <Journey />
         <MedicalEducation />
         <Skills />
         <FutureVision />
