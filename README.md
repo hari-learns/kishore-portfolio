@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kishore Muthukumar — Portfolio
 
-## Getting Started
+Academic portfolio for a 5th-year MBBS student on the physician-scientist
+pathway. Next.js App Router, exported as a fully static site and served from
+GitHub Pages.
 
-First, run the development server:
+**Live:** https://hari-learns.github.io/kishore-portfolio/
+
+## Running locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3010
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploying
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run deploy
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Rebuilds the static export and force-pushes `out/` to the `gh-pages` branch,
+which GitHub Pages serves. Takes about a minute to go live after the push.
 
-## Learn More
+## Editing content
 
-To learn more about Next.js, take a look at the following resources:
+**All copy lives in [`lib/data.ts`](lib/data.ts).** No JSX edits are needed to
+change text — every section reads from that one file.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Placeholders still to replace
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+These are the only values that are not real. Everything else came from the
+brief.
 
-## Deploy on Vercel
+| What | Where | Note |
+|---|---|---|
+| Email address | `contact.email` | Currently `kishore@example.com` |
+| WhatsApp number | `contact.whatsappNumber` | Digits only, country code first, no `+` |
+| ORCID URL | `contact.orcid` | Placeholder zeros |
+| ResearchGate URL | `contact.researchgate` | Placeholder profile |
+| **CV PDF** | `public/kishore-muthukumar-cv.pdf` | **File does not exist yet — the "Download CV" buttons 404 until it is added** |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Two further things worth a second look before this goes to the client:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- The publication title was truncated in the brief (`"Evolocumab in the
+  Management of Statin-Intolerant Familial Hyperlipoproteinemia..."`). The
+  visible portion is used; the full title should replace it in
+  `publications[0].title`.
+- Conference sub-titles and roles (`Presenting Author`, `Delegate`, and the
+  one-line descriptions in `conferences`) were inferred, not supplied.
+
+## Notes for future edits
+
+`images.unoptimized` is required for static export, and it stops `next/image`
+from applying `basePath` automatically. Any URL written by hand — an image
+`src`, or an `<a href>` pointing at a file in `public/` — must go through
+`asset()` from [`lib/basePath.ts`](lib/basePath.ts) or it will 404 on Pages.
