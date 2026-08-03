@@ -277,12 +277,76 @@ export const journey = [
     orientation: "portrait",
   },
   {
+    slug: "world-map",
+    category: "What's next",
+    title: "Pointing west",
+    caption:
+      "Somewhere between Łódź and Rochester — the next step in a training path that keeps crossing borders.",
+    orientation: "portrait",
+  },
+  {
+    slug: "clinical-group",
+    category: "Clinical",
+    title: "The clinical cohort",
+    caption:
+      "White coats, scrubs, and the international group you learn medicine alongside — where lectures finally become ward rounds.",
+    orientation: "landscape",
+  },
+  {
+    slug: "crrt-teaching",
+    category: "Teaching",
+    title: "Continuous renal replacement therapy",
+    caption:
+      "Teaching the trade-offs of CRRT in acute kidney injury — better haemodynamic stability set against cost, clotting, and clearance of the drugs you still need.",
+    orientation: "landscape",
+  },
+  {
+    slug: "ward-team",
+    category: "Clinical",
+    title: "On the ward",
+    caption:
+      "Stethoscopes on, between patients — the people you spend the clinical years learning with.",
+    orientation: "landscape",
+  },
+  {
+    slug: "poznan-conference",
+    category: "Conference",
+    title: "Poznan University of Medical Sciences",
+    caption:
+      "At an international students' conference hosted by Poznan University of Medical Sciences.",
+    orientation: "portrait",
+  },
+  {
+    slug: "formal-evening",
+    category: "Milestone",
+    title: "A formal evening",
+    caption:
+      "One of the evenings that punctuate a long degree — worth marking with the people you shared it with.",
+    orientation: "landscape",
+  },
+  {
     slug: "mircim",
     category: "Conference",
     title: "MIRCIM 2026",
     caption:
-      "At the McMaster International Review Course in Internal Medicine — evidence-based medicine taught by the people writing the evidence.",
+      "At the McMaster International Review Conference of Internal Medicine — evidence-based medicine taught by the people writing the evidence.",
     orientation: "portrait",
+  },
+  {
+    slug: "mircim-peers",
+    category: "Conference",
+    title: "Delegates at MIRCIM",
+    caption:
+      "With fellow delegates — student-researchers from across the world comparing notes between sessions.",
+    orientation: "landscape",
+  },
+  {
+    slug: "mircim-networking",
+    category: "Conference",
+    title: "Between sessions",
+    caption:
+      "The other half of any conference — the conversations over lunch that turn a lecture hall into a network.",
+    orientation: "landscape",
   },
   {
     slug: "anatomy-session",
