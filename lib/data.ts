@@ -261,6 +261,14 @@ export const journey = [
     orientation: "landscape",
   },
   {
+    slug: "ceremony-hall",
+    category: "Milestone",
+    title: "In the hall",
+    caption:
+      "Applause in the auditorium, white coats folded over the seat backs — the ceremony that marks the halfway point of a long degree.",
+    orientation: "landscape",
+  },
+  {
     slug: "pcsk9-case",
     category: "Research",
     title: "Presenting a cardiology case report",
@@ -286,10 +294,10 @@ export const journey = [
   },
   {
     slug: "clinical-group",
-    category: "Clinical",
-    title: "The clinical cohort",
+    category: "Teaching",
+    title: "OSCE 2026 — the team",
     caption:
-      "White coats, scrubs, and the international group you learn medicine alongside — where lectures finally become ward rounds.",
+      "The OSCE team at the Medical University of Łódź — the examiners, supervisors, and volunteers who ran the 2026 clinical skills workshop.",
     orientation: "landscape",
   },
   {
@@ -391,7 +399,7 @@ export const journey = [
 ] as const;
 
 export const contact = {
-  email: "kishore@example.com", // PLACEHOLDER
+  email: "kishorekumarmed01@gmail.com",
   whatsappNumber: "10000000000", // PLACEHOLDER — digits only, country code first
   linkedin: "https://www.linkedin.com/in/kishore-muthukumar-654925246/",
   orcid: "https://orcid.org/0000-0000-0000-0000", // PLACEHOLDER
