@@ -342,10 +342,10 @@ export const journey = [
   },
   {
     slug: "mircim",
-    category: "Conference",
-    title: "MIRCIM 2026",
+    category: "Mentorship",
+    title: "Meeting a Mayo Clinic physician",
     caption:
-      "At the McMaster International Review Conference of Internal Medicine — evidence-based medicine taught by the people writing the evidence.",
+      "A conversation with a Mayo Clinic physician after her session at MIRCIM 2026 — the shortest distance between where you are training and where you are headed.",
     orientation: "portrait",
   },
   {
