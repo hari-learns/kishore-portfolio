@@ -34,12 +34,16 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 py-1.5 pr-4 pl-1.5 backdrop-blur-sm"
+            className="inline-flex items-center gap-2.5 rounded-full border border-line bg-white/70 py-1.5 pr-4 pl-1.5 backdrop-blur-sm max-sm:border-0 max-sm:bg-transparent max-sm:p-0"
           >
-            <span className="rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-semibold tracking-wide text-accent uppercase">
+            <span className="rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-semibold tracking-wide whitespace-nowrap text-accent uppercase">
               {profile.year}
             </span>
-            <span className="text-[13px] text-ink-soft">{profile.institution}</span>
+            {/* The institution already appears in the portrait's "Currently"
+                card, so drop it on mobile rather than wrapping onto two lines. */}
+            <span className="hidden text-[13px] text-ink-soft sm:inline">
+              {profile.institution}
+            </span>
           </motion.div>
 
           <motion.h1
