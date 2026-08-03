@@ -301,6 +301,14 @@ export const journey = [
     orientation: "landscape",
   },
   {
+    slug: "ambassador-banner",
+    category: "Ambassador",
+    title: "Representing the university",
+    caption:
+      "The student ambassador side of the job — speaking for the Medical University of Łódź and the English Division to the people thinking of joining it.",
+    orientation: "portrait",
+  },
+  {
     slug: "crrt-teaching",
     category: "Teaching",
     title: "Continuous renal replacement therapy",
