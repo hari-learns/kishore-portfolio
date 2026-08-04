@@ -408,7 +408,7 @@ export const journey = [
 
 export const contact = {
   email: "kishorekumarmed01@gmail.com",
-  whatsappNumber: "10000000000", // PLACEHOLDER — digits only, country code first
+  whatsappNumber: "919840934375",
   linkedin: "https://www.linkedin.com/in/kishore-muthukumar-654925246/",
   orcid: "https://orcid.org/0000-0000-0000-0000", // PLACEHOLDER
   researchgate: "https://www.researchgate.net/profile/placeholder", // PLACEHOLDER

@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.roles.join(" · ")}`,
+  title: "Dr. Kishore",
   description: profile.mission,
   openGraph: {
     title: `${profile.name} — Medical Student, Researcher, Medical Educator`,
