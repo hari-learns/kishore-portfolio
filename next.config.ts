@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
-// Deployed as a fully static site to GitHub Pages at
-// https://hari-learns.github.io/kishore-portfolio/
-// The repo name becomes the URL sub-path, so basePath must match it.
-const repo = "kishore-portfolio";
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-
+// Served from the root of the custom domain kishorekumardoc.com via GitHub
+// Pages, so there is no basePath — asset URLs are absolute from "/".
+//
+// public/CNAME is what keeps the domain bound. GitHub writes a CNAME file into
+// the gh-pages branch when a custom domain is set, but scripts/deploy.sh
+// force-pushes out/, which would wipe it on the next deploy. Emitting it from
+// public/ means every build carries it.
 const nextConfig: NextConfig = {
   output: "export",
   images: {
@@ -13,8 +14,6 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  basePath: isGithubPages ? `/${repo}` : "",
-  assetPrefix: isGithubPages ? `/${repo}/` : "",
 };
 
 export default nextConfig;
