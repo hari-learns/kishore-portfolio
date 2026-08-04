@@ -3,8 +3,8 @@
 import { useCallback, useEffect, type Dispatch, type SetStateAction } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { journey } from "@/lib/data";
+import { X, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { journey, journeyGroups, journeyChapters } from "@/lib/data";
 import { asset } from "@/lib/basePath";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -55,7 +55,12 @@ export default function JourneyModal({
     return () => window.removeEventListener("keydown", onKey);
   }, [open, lightbox, onClose, setLightbox, step]);
 
-  const active = lightbox === null ? null : journey[lightbox];
+  // Hoisted so the caption block doesn't need a non-null assertion on `lightbox`.
+  const activeIndex = lightbox ?? 0;
+  const active = lightbox === null ? null : journey[activeIndex];
+  const activeChapter = active
+    ? journeyChapters.find((c) => c.id === active.chapter)
+    : undefined;
 
   return (
     <AnimatePresence>
@@ -70,60 +75,110 @@ export default function JourneyModal({
           aria-modal="true"
           aria-label="Journey gallery"
         >
-          {/* ── Header ── */}
-          <div className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-ink/80 px-6 py-4 backdrop-blur-xl sm:px-8">
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.14em] text-teal uppercase">
-                The Journey
-              </p>
-              <p className="mt-0.5 font-display text-lg text-white">
-                {journey.length} moments
-              </p>
+          {/* ── Header, with chapter jump-chips (52 photos are otherwise unnavigable) ── */}
+          <div className="sticky top-0 z-10 border-b border-white/10 bg-ink/80 px-6 py-4 backdrop-blur-xl sm:px-8">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-[11px] font-semibold tracking-[0.14em] text-sky-light uppercase">
+                  The Journey
+                </p>
+                <p className="mt-0.5 font-display text-lg text-white">
+                  {journey.length} moments
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                aria-label="Close gallery"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:bg-white/10"
+              >
+                <X className="h-4.5 w-4.5" />
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={onClose}
-              aria-label="Close gallery"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:bg-white/10"
-            >
-              <X className="h-4.5 w-4.5" />
-            </button>
+
+            <div className="mt-3 flex gap-2 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {journeyGroups
+                .filter((g) => g.items.length > 0)
+                .map((g) => (
+                  <a
+                    key={g.id}
+                    href={`#gallery-${g.id}`}
+                    className="shrink-0 rounded-full border border-white/15 px-3.5 py-1.5 text-[12px] text-white/70 transition-colors hover:border-sky-light/60 hover:text-white"
+                  >
+                    {g.label}
+                    <span className="ml-1.5 text-white/40 tabular-nums">
+                      {g.items.length}
+                    </span>
+                  </a>
+                ))}
+            </div>
           </div>
 
-          {/* ── Card grid ── */}
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 px-6 py-10 sm:grid-cols-2 sm:px-8 lg:grid-cols-3">
-            {journey.map((item, i) => (
-              <motion.button
-                key={item.slug}
-                type="button"
-                onClick={() => setLightbox(i)}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.04 * i, ease }}
-                className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left transition-colors hover:border-teal/50"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-black/30">
-                  <Image
-                    src={asset(`/journey/thumb/${item.slug}.jpg`)}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="text-[10.5px] font-semibold tracking-[0.12em] text-teal uppercase">
-                    {item.category}
-                  </p>
-                  <h3 className="mt-2 font-display text-lg leading-snug text-white">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-3 text-[13.5px] leading-relaxed text-white/50">
-                    {item.caption}
-                  </p>
-                </div>
-              </motion.button>
-            ))}
+          {/* ── Chaptered card grid ── */}
+          <div className="mx-auto max-w-6xl px-6 py-10 sm:px-8">
+            {journeyGroups
+              .filter((group) => group.items.length > 0)
+              .map((group) => (
+                <section
+                  key={group.id}
+                  id={`gallery-${group.id}`}
+                  className="scroll-mt-32 pt-6 first:pt-0"
+                >
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-white/10 pb-3">
+                    <h3 className="font-display text-xl text-white">{group.label}</h3>
+                    {group.period && (
+                      <span className="text-[11.5px] tracking-wide text-sky-light uppercase">
+                        {group.period}
+                      </span>
+                    )}
+                    <span className="text-[12px] text-white/40 tabular-nums">
+                      {group.items.length}
+                    </span>
+                  </div>
+
+                  <div className="mt-6 mb-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                    {group.items.map((item, i) => (
+                      <motion.button
+                        key={item.slug}
+                        type="button"
+                        onClick={() => setLightbox(item.flatIndex)}
+                        initial={{ opacity: 0, y: 18 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-70px" }}
+                        transition={{
+                          duration: 0.5,
+                          // Capped and per-chapter: a flat 0.04 * i meant the
+                          // last of 52 cards started animating ~2s after open.
+                          delay: Math.min(i, 8) * 0.04,
+                          ease,
+                        }}
+                        className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left transition-colors hover:border-sky-light/50"
+                      >
+                        <div className="relative aspect-[4/3] overflow-hidden bg-black/30">
+                          <Image
+                            src={asset(`/journey/thumb/${item.slug}.jpg`)}
+                            alt={item.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                          />
+                        </div>
+                        <div className="p-5">
+                          <p className="text-[10.5px] font-semibold tracking-[0.12em] text-sky-light uppercase">
+                            {item.category}
+                          </p>
+                          <h3 className="mt-2 font-display text-lg leading-snug text-white">
+                            {item.title}
+                          </h3>
+                          <p className="mt-2 line-clamp-3 text-[13.5px] leading-relaxed text-white/50">
+                            {item.caption}
+                          </p>
+                        </div>
+                      </motion.button>
+                    ))}
+                  </div>
+                </section>
+              ))}
           </div>
 
           {/* ── Lightbox ── */}
@@ -191,8 +246,9 @@ export default function JourneyModal({
                   className="mx-auto max-w-3xl px-6 pb-10 text-center"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <p className="text-[10.5px] font-semibold tracking-[0.12em] text-teal uppercase">
-                    {active.category} · {String(lightbox! + 1).padStart(2, "0")} /{" "}
+                  <p className="text-[10.5px] font-semibold tracking-[0.12em] text-sky-light uppercase">
+                    {activeChapter?.label ?? active.category} ·{" "}
+                    {String(activeIndex + 1).padStart(2, "0")} /{" "}
                     {String(journey.length).padStart(2, "0")}
                   </p>
                   <h3 className="mt-2 font-display text-xl text-white sm:text-2xl">
@@ -201,6 +257,23 @@ export default function JourneyModal({
                   <p className="mt-2 text-[14.5px] leading-relaxed text-white/55">
                     {active.caption}
                   </p>
+
+                  {active.links && active.links.length > 0 && (
+                    <div className="mt-5 flex flex-wrap justify-center gap-2.5">
+                      {active.links.map((link) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 rounded-full border border-white/20 px-4 py-2 text-[13px] font-medium text-white transition-colors hover:border-sky-light/60 hover:bg-white/10"
+                        >
+                          {link.label}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </motion.div>
             )}

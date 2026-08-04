@@ -14,7 +14,7 @@ export default function Education() {
       <div className="mt-14 space-y-8">
         {education.map((entry, i) => (
           <Reveal key={entry.school} delay={i * 0.08}>
-            <article className="grid grid-cols-1 gap-6 rounded-3xl border border-line bg-white p-7 sm:p-10 lg:grid-cols-[auto_1fr] lg:gap-14">
+            <article className="grid grid-cols-1 gap-6 rounded-3xl border border-line bg-canvas-raised p-7 sm:p-10 lg:grid-cols-[auto_1fr] lg:gap-14">
               <div className="lg:w-44">
                 <span className="inline-flex rounded-full bg-accent-soft px-3 py-1.5 text-[12px] font-semibold tracking-wide text-accent">
                   {entry.period}
@@ -31,7 +31,7 @@ export default function Education() {
                 <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-3.5 sm:grid-cols-2">
                   {entry.highlights.map((highlight) => (
                     <li key={highlight} className="flex items-start gap-3">
-                      <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
+                      <span className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full bg-sky" />
                       <span className="text-[15px] leading-relaxed text-ink-soft">
                         {highlight}
                       </span>

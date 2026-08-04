@@ -1,3 +1,4 @@
+import { ExternalLink } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import { medicalEducation } from "@/lib/data";
@@ -22,14 +23,14 @@ export default function MedicalEducation() {
             <Reveal
               key={item.title}
               delay={i * 0.06}
-              className={`bg-white ${
+              className={`bg-canvas-raised ${
                 i === medicalEducation.length - 1 && medicalEducation.length % 2 !== 0
                   ? "sm:col-span-2"
                   : ""
               }`}
             >
               <div className="group h-full p-7 transition-colors hover:bg-canvas-subtle">
-                <span className="font-display text-[13px] text-teal tabular-nums">
+                <span className="font-display text-[13px] text-sky tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 font-display text-[1.25rem] leading-snug tracking-tight transition-colors group-hover:text-accent">
@@ -38,6 +39,17 @@ export default function MedicalEducation() {
                 <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">
                   {item.description}
                 </p>
+                {"href" in item && item.href && (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-accent hover:underline"
+                  >
+                    {item.linkLabel}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
+                )}
               </div>
             </Reveal>
           ))}

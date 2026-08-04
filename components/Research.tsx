@@ -27,16 +27,16 @@ export default function Research() {
         <div className="mt-8 space-y-6">
           {publications.map((pub, i) => (
             <Reveal key={pub.title} delay={i * 0.08}>
-              <article className="group relative overflow-hidden rounded-3xl border border-line bg-white p-8 transition-all hover:border-accent/40 hover:shadow-[0_20px_50px_-30px_rgba(18,73,201,0.5)] sm:p-10">
-                <span className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-accent to-teal" />
+              <article className="group relative overflow-hidden rounded-3xl border border-line bg-canvas-raised p-8 transition-all hover:border-accent/40 hover:shadow-[0_20px_50px_-30px_color-mix(in_srgb,var(--accent)_50%,transparent)] sm:p-10">
+                <span className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-accent-deep via-accent to-sky" />
 
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full bg-ink px-3 py-1.5 text-[11px] font-semibold tracking-[0.1em] text-white uppercase">
                     {pub.venue}
                   </span>
                   <span className="text-[12.5px] text-ink-muted">{pub.type}</span>
-                  <span className="ml-auto inline-flex items-center gap-1.5 text-[12.5px] font-medium text-teal">
-                    <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                  <span className="ml-auto inline-flex items-center gap-1.5 text-[12.5px] font-medium text-sky">
+                    <span className="h-1.5 w-1.5 rounded-full bg-sky" />
                     {pub.status}
                   </span>
                 </div>
@@ -69,21 +69,33 @@ export default function Research() {
       <div className="mt-20">
         <Reveal>
           <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-teal" />
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sky" />
             <h3 className="text-[12px] font-semibold tracking-[0.14em] text-ink uppercase">
-              Ongoing Research
+              Ongoing Publications
             </h3>
             <span className="h-px flex-1 bg-line" />
           </div>
         </Reveal>
 
+        <Reveal delay={0.05}>
+          <p className="mt-6 max-w-3xl text-[16.5px] leading-relaxed text-ink-soft">
+            {ongoingResearch.intro}
+          </p>
+        </Reveal>
+
         <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
-          {ongoingResearch.map((project, i) => (
+          {ongoingResearch.items.map((project, i) => (
             <Reveal key={project.title} delay={i * 0.07}>
-              <article className="group h-full rounded-3xl border border-line bg-white p-7 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_44px_-28px_rgba(10,20,37,0.45)] sm:p-8">
-                <p className="text-[11px] font-semibold tracking-[0.12em] text-teal uppercase">
-                  {project.field}
-                </p>
+              <article className="group h-full rounded-3xl border border-line bg-canvas-raised p-7 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_18px_44px_-28px_color-mix(in_srgb,var(--ink)_45%,transparent)] sm:p-8">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="text-[11px] font-semibold tracking-[0.12em] text-sky uppercase">
+                    {project.type}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 text-[11px] font-medium text-accent">
+                    <span className="h-1 w-1 rounded-full bg-accent" />
+                    {project.status}
+                  </span>
+                </div>
                 <h4 className="mt-4 font-display text-[1.4rem] leading-snug tracking-tight transition-colors group-hover:text-accent">
                   {project.title}
                 </h4>
@@ -118,8 +130,8 @@ export default function Research() {
         <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
           {pharmacogenomics.map((item, i) => (
             <Reveal key={item.gene} delay={0.02 * i} y={14}>
-              <div className="group h-full rounded-2xl border border-line bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-teal/50 hover:bg-teal-soft/40 sm:p-5">
-                <p className="font-display text-[1.05rem] tracking-tight text-ink transition-colors group-hover:text-teal">
+              <div className="group h-full rounded-2xl border border-line bg-canvas-raised p-4 transition-all hover:-translate-y-0.5 hover:border-sky/50 hover:bg-sky-soft/40 sm:p-5">
+                <p className="font-display text-[1.05rem] tracking-tight text-ink transition-colors group-hover:text-sky">
                   {item.gene}
                 </p>
                 <p className="mt-1.5 text-[12.5px] leading-snug text-ink-muted">

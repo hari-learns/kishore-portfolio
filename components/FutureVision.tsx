@@ -6,12 +6,12 @@ export default function FutureVision() {
     <section id="vision" className="relative overflow-hidden bg-ink px-6 py-24 sm:px-8 sm:py-28 lg:py-36">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute top-[-25%] left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-accent/20 blur-3xl" />
-        <div className="absolute right-[-10%] bottom-[-30%] h-[28rem] w-[28rem] rounded-full bg-teal/15 blur-3xl" />
+        <div className="absolute right-[-10%] bottom-[-30%] h-[28rem] w-[28rem] rounded-full bg-sky-light/15 blur-3xl" />
       </div>
 
       <div className="relative mx-auto w-full max-w-5xl text-center">
         <Reveal>
-          <p className="eyebrow justify-center !text-teal">Future Vision</p>
+          <p className="eyebrow justify-center !text-sky-light">Future Vision</p>
         </Reveal>
 
         <Reveal delay={0.06}>

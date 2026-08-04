@@ -18,12 +18,12 @@ export default function ClinicalExperience() {
           {/* ambient glow */}
           <div className="pointer-events-none absolute inset-0">
             <div className="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-accent/25 blur-3xl" />
-            <div className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-teal/20 blur-3xl" />
+            <div className="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-sky-light/20 blur-3xl" />
           </div>
 
           <div className="relative">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.12em] uppercase backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+              <span className="h-1.5 w-1.5 rounded-full bg-sky-light" />
               Featured Experience
             </span>
 
@@ -32,7 +32,7 @@ export default function ClinicalExperience() {
                 <h3 className="font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1] tracking-tight">
                   {featured.institution}
                 </h3>
-                <p className="mt-3 font-display text-xl text-teal italic">
+                <p className="mt-3 font-display text-xl text-sky-light italic">
                   {featured.department}
                 </p>
               </div>

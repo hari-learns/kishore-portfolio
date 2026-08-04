@@ -7,15 +7,16 @@ import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JourneyModal from "@/components/JourneyModal";
-import { journey } from "@/lib/data";
+import JourneyChapter from "@/components/JourneyChapter";
+import { journey, journeyGroups, featuredIndices } from "@/lib/data";
 import { asset } from "@/lib/basePath";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 const ROTATE_MS = 5000;
 
-/** Fisher-Yates. Runs on the client only, after mount, to keep SSR output stable. */
-function shuffled(length: number) {
-  const order = Array.from({ length }, (_, i) => i);
+/** Fisher-Yates over a copy. Client-only, after mount, to keep SSR output stable. */
+function shuffled(source: readonly number[]) {
+  const order = [...source];
   for (let i = order.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [order[i], order[j]] = [order[j], order[i]];
@@ -24,11 +25,11 @@ function shuffled(length: number) {
 }
 
 export default function Journey() {
-  // Server and first client render share this identity order; the shuffle is
-  // applied in an effect so hydration never mismatches.
-  const [order, setOrder] = useState<number[]>(() =>
-    Array.from({ length: journey.length }, (_, i) => i),
-  );
+  // The showcase rotates a curated subset, not all ~50 photos — a progress bar
+  // with 50 segments is unreadable and the counter becomes meaningless.
+  // Server and first client render share this order; the shuffle is applied in
+  // an effect so hydration never mismatches.
+  const [order, setOrder] = useState<number[]>(() => [...featuredIndices]);
   const [pos, setPos] = useState(0);
   const [paused, setPaused] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -40,7 +41,12 @@ export default function Journey() {
     reducedMotion.current = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    setOrder(shuffled(journey.length));
+    // Randomising during render (or in the useState initialiser) would make the
+    // client's first paint disagree with the server HTML and break hydration.
+    // A single post-mount shuffle is the intended pattern here: it runs once and
+    // cascades nothing, which is what this rule actually guards against.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOrder(shuffled(featuredIndices));
   }, []);
 
   // Background tabs keep firing setInterval but freeze rAF, so the crossfade's
@@ -52,9 +58,16 @@ export default function Journey() {
     return () => document.removeEventListener("visibilitychange", onVisibility);
   }, []);
 
-  const go = useCallback((delta: number) => {
-    setPos((p) => (p + delta + journey.length) % journey.length);
-  }, []);
+  // Wraps on `order.length`, not `journey.length` — `pos` is a cursor into
+  // `order`, and now that `order` is the featured subset the two differ.
+  const count = order.length;
+  const go = useCallback(
+    (delta: number) => {
+      if (count === 0) return;
+      setPos((p) => (p + delta + count) % count);
+    },
+    [count],
+  );
 
   // Auto-advance, unless paused, reduced-motion, or the gallery is covering it.
   useEffect(() => {
@@ -79,7 +92,7 @@ export default function Journey() {
           <button
             type="button"
             onClick={() => setGalleryOpen(true)}
-            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full border border-line bg-white px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full border border-line bg-canvas-raised px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
           >
             <LayoutGrid className="h-4 w-4" />
             View all {journey.length} moments
@@ -138,7 +151,7 @@ export default function Journey() {
                   transition={{ duration: 0.4 }}
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/35 px-3.5 py-1.5 text-[10.5px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm"
                 >
-                  <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-sky-light" />
                   {item.category}
                 </motion.span>
               </AnimatePresence>
@@ -185,7 +198,7 @@ export default function Journey() {
               <div className="mt-5 flex items-center gap-3">
                 <span className="font-display text-[13px] text-white/60 tabular-nums">
                   {String(pos + 1).padStart(2, "0")} /{" "}
-                  {String(journey.length).padStart(2, "0")}
+                  {String(count).padStart(2, "0")}
                 </span>
                 <div className="flex flex-1 gap-1.5">
                   {order.map((slot, i) => (
@@ -198,7 +211,7 @@ export default function Journey() {
                     >
                       <span
                         className={`block h-full rounded-full transition-all duration-500 ${
-                          i === pos ? "w-full bg-teal" : "w-0 bg-white/60 group-hover:w-full"
+                          i === pos ? "w-full bg-sky-light" : "w-0 bg-white/60 group-hover:w-full"
                         }`}
                       />
                     </button>
@@ -239,6 +252,24 @@ export default function Journey() {
           })}
         </div>
       </Reveal>
+
+      {/* ── Chapters: the transformation, year by year ── */}
+      <div className="relative mt-20 space-y-16">
+        {/* Spine linking the chapter nodes into one timeline */}
+        <span className="absolute top-3 bottom-3 left-[3px] w-px bg-gradient-to-b from-accent via-sky to-transparent sm:left-[7px]" />
+
+        {journeyGroups.map((group) => (
+          <Reveal key={group.id}>
+            <JourneyChapter
+              group={group}
+              onOpen={(flatIndex) => {
+                setGalleryOpen(true);
+                setLightbox(flatIndex);
+              }}
+            />
+          </Reveal>
+        ))}
+      </div>
 
       <JourneyModal
         open={galleryOpen}

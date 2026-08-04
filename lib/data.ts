@@ -95,32 +95,41 @@ export const publications = [
   },
 ] as const;
 
-export const ongoingResearch = [
-  {
-    title: "Cardio-Oncology & Onco-Nephrology",
-    field: "Cross-disciplinary review",
-    description:
-      "Investigating the cardiac and renal consequences of modern cancer therapy, and how surveillance and early intervention can preserve organ function without compromising oncologic outcomes.",
-  },
-  {
-    title: "Pancreatic Ductal Adenocarcinoma",
-    field: "Narrative review",
-    description:
-      "Synthesising the current therapeutic landscape of PDAC — why outcomes have moved so little, and where emerging strategies show genuine promise.",
-  },
-  {
-    title: "Glioblastoma Therapeutics",
-    field: "Translational oncology",
-    description:
-      "Reviewing treatment approaches for glioblastoma, with focus on the blood-brain barrier, tumour heterogeneity, and next-generation modalities.",
-  },
-  {
-    title: "Pharmacogenomics & Precision Medicine",
-    field: "Clinical pharmacology",
-    description:
-      "Studying how inherited variation in drug-metabolising enzymes and transporters can be translated into safer, individually calibrated prescribing.",
-  },
-] as const;
+export const ongoingResearch = {
+  intro:
+    "My current research focuses on clinically relevant topics across precision medicine, internal medicine, oncology, and respiratory medicine. These projects reflect my growing interest in evidence-based medicine and multidisciplinary clinical research.",
+  items: [
+    {
+      title: "Pharmacogenetics",
+      type: "Narrative Review",
+      status: "In Preparation",
+      description:
+        "This review explores the role of pharmacogenetics in personalized medicine, highlighting how genetic variations influence drug response, efficacy, and safety. The project discusses current evidence, emerging clinical applications, and the future integration of pharmacogenomics into routine healthcare.",
+    },
+    {
+      title:
+        "Co-occurrence of Kidney Disease with Cardiovascular Diseases in the Cancer Population",
+      type: "Narrative Review",
+      status: "In Preparation",
+      description:
+        "This narrative review examines the complex relationship between kidney disease, cardiovascular disorders, and cancer. It focuses on shared risk factors, underlying pathophysiological mechanisms, treatment-related complications, and multidisciplinary strategies to improve patient outcomes within the field of cardio-onco-nephrology.",
+    },
+    {
+      title: "Pancreatic Ductal Adenocarcinoma (PDAC): Survival and Current Advances",
+      type: "Narrative Review",
+      status: "In Preparation",
+      description:
+        "This review summarizes current evidence on pancreatic ductal adenocarcinoma, with emphasis on epidemiology, molecular biology, diagnostic approaches, treatment strategies, and recent advances aimed at improving survival and patient care.",
+    },
+    {
+      title: "Asthma Misdiagnosis: A Clinical Case Report",
+      type: "Clinical Case Report",
+      status: "In Preparation",
+      description:
+        "This case report highlights the diagnostic challenges associated with asthma and emphasizes the importance of comprehensive clinical evaluation, appropriate differential diagnosis, and evidence-based management to avoid delayed or incorrect treatment.",
+    },
+  ],
+} as const;
 
 export const pharmacogenomics = [
   { gene: "CYP2D6", note: "Antidepressants, opioids, tamoxifen" },
@@ -204,6 +213,13 @@ export const medicalEducation = [
     title: "Clinical Workshops",
     description: "Hands-on skills sessions built around procedural competence.",
   },
+  {
+    title: "Medical Polish",
+    description:
+      "Helping international students learn medical Polish, in partnership with Akademia Polskiego — because a patient deserves to be understood in their own language.",
+    href: "https://akademiapolskiego.com/en/home-page/",
+    linkLabel: "Akademia Polskiego",
+  },
 ] as const;
 
 export const skills = [
@@ -249,162 +265,537 @@ export const futureVision = {
   ],
 } as const;
 
-// Photographs from training, research, teaching, and conferences.
-// `src` is the full-size image; a matching thumbnail lives in /journey/thumb/.
-export const journey = [
+// ── Photo journey ──────────────────────────────────────────────────────────
+// Images resolve by convention: /journey/<slug>.jpg and /journey/thumb/<slug>.jpg.
+// Both files must exist — a missing thumbnail is a silent 404 on a static host.
+//
+// Entries are authored in CHAPTER ORDER, and that ordering is load-bearing:
+// groups are derived by filtering while preserving each item's index into this
+// array, so contiguous chapters are what make lightbox next/previous walk the
+// journey chronologically instead of jumping between years.
+
+export type JourneyLink = { label: string; href: string };
+
+export type JourneyItem = {
+  slug: string;
+  chapter: ChapterId;
+  /** Per-photo chip. Narrower than the chapter — describes the photo, not the era. */
+  category: string;
+  title: string;
+  caption: string;
+  /** Opts this photo into the rotating showcase at the top of the section. */
+  featured?: boolean;
+  links?: JourneyLink[];
+};
+
+export const journeyChapters = [
+  {
+    id: "first-year",
+    label: "First Year",
+    period: "Year 1",
+    blurb: "Arriving in Łódź — the year of sitting in the front row and volunteering for everything.",
+  },
+  {
+    id: "second-year",
+    label: "Second Year",
+    period: "Year 2",
+    blurb: "The heaviest pre-clinical year, and the one that decides whether you stay.",
+  },
+  {
+    id: "third-year",
+    label: "Third Year",
+    period: "Year 3",
+    blurb: "Pre-clinical gives way to clinical. Long library days, longer coffees.",
+  },
+  {
+    id: "now",
+    label: "Fourth Year & Now",
+    period: "Year 4 —",
+    blurb: "Research, conferences, and teaching the students who were where he started.",
+  },
+  {
+    id: "workshops",
+    label: "Workshops & Teaching",
+    period: "Ongoing",
+    blurb: "The sessions he organises and teaches — anatomy, OSCE, CPR, pathology.",
+  },
+  {
+    id: "campus",
+    label: "Campus & Clinical Skills",
+    period: "Ongoing",
+    blurb: "Lecture halls, libraries, labs, and the hands-on hours in between.",
+  },
+  {
+    id: "people",
+    label: "People & Downtime",
+    period: "Ongoing",
+    blurb: "The classmates, staff, and quiet parks that make a long degree survivable.",
+  },
+  {
+    id: "others",
+    label: "Others",
+    period: "",
+    blurb: "Moments that don't sit neatly in one chapter.",
+  },
+] as const;
+
+export type ChapterId = (typeof journeyChapters)[number]["id"];
+
+export const journey: JourneyItem[] = [
+  // ── First Year ───────────────────────────────────────────────────────────
+  {
+    slug: "fy-first-workshop",
+    chapter: "first-year",
+    category: "Workshop",
+    title: "First workshop, as a participant",
+    caption:
+      "The first year on the receiving end of a workshop — the same sessions he would later be the one running.",
+    featured: true,
+  },
+  {
+    slug: "fy-patient-actor",
+    chapter: "first-year",
+    category: "Peer Teaching",
+    title: "Playing the patient",
+    caption:
+      "Acting as the simulated patient so classmates could practise their examination — the cheapest and best teaching tool in medical school.",
+  },
+  {
+    slug: "fy-participant",
+    chapter: "first-year",
+    category: "Workshop",
+    title: "In the room",
+    caption: "Early days — turning up to everything on offer and taking notes.",
+  },
+  {
+    slug: "fy-workshop-participant",
+    chapter: "first-year",
+    category: "Workshop",
+    title: "Learning the format",
+    caption:
+      "Another first-year workshop, learning how a good session is structured before ever having to build one.",
+  },
+  {
+    slug: "fy-early-days",
+    chapter: "first-year",
+    category: "Campus",
+    title: "Where it started",
+    caption: "The first year in Łódź, a long way from home and entirely at the beginning.",
+  },
+
+  // ── Second Year ──────────────────────────────────────────────────────────
+  {
+    slug: "sy-workload",
+    chapter: "second-year",
+    category: "Study",
+    title: "The heavy year",
+    caption:
+      "Second year and the workload that comes with it — the stretch most students describe as the hardest of the degree.",
+    featured: true,
+  },
+
+  // ── Third Year ───────────────────────────────────────────────────────────
+  {
+    slug: "ty-portrait",
+    chapter: "third-year",
+    category: "Milestone",
+    title: "Third year",
+    caption: "Pre-clinical behind him, the wards ahead.",
+    featured: true,
+  },
+  {
+    slug: "ty-coffee",
+    chapter: "third-year",
+    category: "Downtime",
+    title: "Fuelled accordingly",
+    caption: "Third year ran largely on coffee, and made no secret of it.",
+  },
+  {
+    slug: "ty-coffee-late",
+    chapter: "third-year",
+    category: "Downtime",
+    title: "Another long one",
+    caption: "The other half of third year — the hours that don't appear on any transcript.",
+  },
+
+  // ── Fourth Year & Now ────────────────────────────────────────────────────
   {
     slug: "white-coat",
+    chapter: "now",
     category: "Milestone",
     title: "White coat ceremony",
     caption:
       "Receiving the white coat at the Medical University of Łódź — the point where studying medicine becomes practising it.",
-    orientation: "landscape",
+    featured: true,
   },
   {
     slug: "ceremony-hall",
+    chapter: "now",
     category: "Milestone",
     title: "In the hall",
     caption:
       "Applause in the auditorium, white coats folded over the seat backs — the ceremony that marks the halfway point of a long degree.",
-    orientation: "landscape",
   },
   {
     slug: "pcsk9-case",
+    chapter: "now",
     category: "Research",
     title: "Presenting a cardiology case report",
     caption:
       "Presenting author on “Targeted PCSK9 Inhibitor Therapy in a Statin-Intolerant Patient with Elevated Lipoprotein(a) Following TAVI” — Biegański Hospital, Łódź.",
-    orientation: "landscape",
+    featured: true,
   },
   {
     slug: "polytrauma-case",
+    chapter: "now",
     category: "Research",
     title: "Polytrauma case report",
     caption:
       "Co-author on a polytrauma case following a motorcycle accident, with the Department of Arthroscopy, Minimally Invasive Surgery and Sports Traumatology.",
-    orientation: "portrait",
-  },
-  {
-    slug: "world-map",
-    category: "What's next",
-    title: "Pointing west",
-    caption:
-      "Somewhere between Łódź and Rochester — the next step in a training path that keeps crossing borders.",
-    orientation: "portrait",
-  },
-  {
-    slug: "clinical-group",
-    category: "Teaching",
-    title: "OSCE 2026 — the team",
-    caption:
-      "The OSCE team at the Medical University of Łódź — the examiners, supervisors, and volunteers who ran the 2026 clinical skills workshop.",
-    orientation: "landscape",
-  },
-  {
-    slug: "ambassador-banner",
-    category: "Ambassador",
-    title: "Representing the university",
-    caption:
-      "The student ambassador side of the job — speaking for the Medical University of Łódź and the English Division to the people thinking of joining it.",
-    orientation: "portrait",
-  },
-  {
-    slug: "crrt-teaching",
-    category: "Teaching",
-    title: "Continuous renal replacement therapy",
-    caption:
-      "Teaching the trade-offs of CRRT in acute kidney injury — better haemodynamic stability set against cost, clotting, and clearance of the drugs you still need.",
-    orientation: "landscape",
-  },
-  {
-    slug: "ward-team",
-    category: "Clinical",
-    title: "On the ward",
-    caption:
-      "Stethoscopes on, between patients — the people you spend the clinical years learning with.",
-    orientation: "landscape",
-  },
-  {
-    slug: "poznan-conference",
-    category: "Conference",
-    title: "Poznan University of Medical Sciences",
-    caption:
-      "At an international students' conference hosted by Poznan University of Medical Sciences.",
-    orientation: "portrait",
-  },
-  {
-    slug: "formal-evening",
-    category: "Milestone",
-    title: "A formal evening",
-    caption:
-      "One of the evenings that punctuate a long degree — worth marking with the people you shared it with.",
-    orientation: "landscape",
   },
   {
     slug: "mircim",
+    chapter: "now",
     category: "Mentorship",
     title: "Meeting a Mayo Clinic physician",
     caption:
       "A conversation with a Mayo Clinic physician after her session at MIRCIM 2026 — the shortest distance between where you are training and where you are headed.",
-    orientation: "portrait",
+    featured: true,
+  },
+  {
+    slug: "prabhu-mircim",
+    chapter: "now",
+    category: "Mentorship",
+    title: "With Prabhu Mathiyalagan",
+    caption:
+      "At MIRCIM 2026 with Prabhu Mathiyalagan — researcher and founder, and one of the more useful conversations of the conference.",
+    links: [
+      {
+        label: "ResearchGate",
+        href: "https://www.researchgate.net/profile/Prabhu-Mathiyalagan",
+      },
+      { label: "Benthos", href: "https://www.mybenthos.com/" },
+    ],
   },
   {
     slug: "mircim-peers",
+    chapter: "now",
     category: "Conference",
     title: "Delegates at MIRCIM",
     caption:
       "With fellow delegates — student-researchers from across the world comparing notes between sessions.",
-    orientation: "landscape",
   },
   {
     slug: "mircim-networking",
+    chapter: "now",
     category: "Conference",
     title: "Between sessions",
     caption:
       "The other half of any conference — the conversations over lunch that turn a lecture hall into a network.",
-    orientation: "landscape",
   },
   {
-    slug: "anatomy-session",
-    category: "Teaching",
-    title: "Master Your Anatomy",
+    slug: "poznan-conference",
+    chapter: "now",
+    category: "Conference",
+    title: "Poznan University of Medical Sciences",
     caption:
-      "Facilitating a peer anatomy session — skeleton, Netter's atlas, and a room of students reasoning through it together.",
-    orientation: "landscape",
+      "At the AMSA International Students' Conference, hosted by Poznan University of Medical Sciences.",
+  },
+  {
+    slug: "clinical-group",
+    chapter: "now",
+    category: "Teaching",
+    title: "OSCE 2026 — the team",
+    caption:
+      "The OSCE team at the Medical University of Łódź — the examiners, supervisors, and volunteers who ran the 2026 clinical skills workshop.",
+    featured: true,
+  },
+  {
+    slug: "crrt-teaching",
+    chapter: "now",
+    category: "Teaching",
+    title: "Continuous renal replacement therapy",
+    caption:
+      "Teaching the trade-offs of CRRT in acute kidney injury — better haemodynamic stability set against cost, clotting, and clearance of the drugs you still need.",
   },
   {
     slug: "history-taking",
+    chapter: "now",
     category: "Teaching",
     title: "History taking & clinical examination",
     caption:
       "Teaching the fundamentals — how a structured history and examination shape the differential before any test is ordered.",
-    orientation: "portrait",
+  },
+  {
+    slug: "anatomy-session",
+    chapter: "now",
+    category: "Teaching",
+    title: "Master Your Anatomy",
+    caption:
+      "Facilitating a peer anatomy session — skeleton, Netter's atlas, and a room of students reasoning through it together.",
+  },
+  {
+    slug: "ambassador-banner",
+    chapter: "now",
+    category: "Ambassador",
+    title: "Representing the university",
+    caption:
+      "The student ambassador side of the job — speaking for the Medical University of Łódź and the English Division to the people thinking of joining it.",
+  },
+  {
+    slug: "formal-evening",
+    chapter: "now",
+    category: "Milestone",
+    title: "A formal evening",
+    caption:
+      "One of the evenings that punctuate a long degree — worth marking with the people you shared it with.",
   },
   {
     slug: "library",
+    chapter: "now",
     category: "Study",
     title: "In the library",
     caption:
       "The unglamorous half of medicine — long hours with the textbooks that make the clinical hours make sense.",
-    orientation: "portrait",
   },
   {
     slug: "pharmacology",
+    chapter: "now",
     category: "Study",
     title: "Pharmacology",
     caption:
       "Working through Lippincott's Illustrated Reviews — the groundwork behind an interest in clinical pharmacology.",
-    orientation: "landscape",
   },
   {
-    slug: "polish-academy",
-    category: "Language",
-    title: "Medical Polish",
+    slug: "world-map",
+    chapter: "now",
+    category: "What's next",
+    title: "Pointing west",
     caption:
-      "Studying medical Polish with Akademia Polskiego — because the patient in front of you deserves to be understood in their own language.",
-    orientation: "portrait",
+      "Somewhere between Łódź and Rochester — the next step in a training path that keeps crossing borders.",
+    featured: true,
   },
-] as const;
+
+  // ── Workshops & Teaching ─────────────────────────────────────────────────
+  {
+    slug: "ws-anatomy-lodz-2025",
+    chapter: "workshops",
+    category: "Organiser",
+    title: "Master Your Anatomy — 2025 edition",
+    caption:
+      "The anatomy workshop he organised at the Medical University of Łódź, 2025 edition — from planning and faculty liaison through to the room itself.",
+    featured: true,
+  },
+  {
+    slug: "ws-anatomy-lecture",
+    chapter: "workshops",
+    category: "Teaching",
+    title: "Giving the anatomy lecture",
+    caption: "At the front of the anatomy workshop — the part where you find out how well you actually know it.",
+  },
+  {
+    slug: "ws-anatomy-bydgoszcz",
+    chapter: "workshops",
+    category: "Teaching",
+    title: "Anatomy workshop, Bydgoszcz",
+    caption:
+      "Taking the anatomy workshop beyond Łódź, to the Medical University in Bydgoszcz.",
+  },
+  {
+    slug: "ws-pathology-taran",
+    chapter: "workshops",
+    category: "Organiser",
+    title: "Pathology, with Prof. Katarzyna Taran",
+    caption:
+      "Helping organise Prof. Katarzyna Taran's pathology workshop, alongside the book she is preparing for medical students.",
+    featured: true,
+  },
+  {
+    slug: "ws-osce-planning",
+    chapter: "workshops",
+    category: "Organiser",
+    title: "Building the OSCE workshop",
+    caption:
+      "The pre-planning stage of the OSCE workshop — stations, rotations, examiners, and timing, before a single student walks in.",
+  },
+  {
+    slug: "ws-cpr",
+    chapter: "workshops",
+    category: "Clinical Skills",
+    title: "CPR training",
+    caption: "Compressions on the manikin — the skill you rehearse so it survives the adrenaline.",
+  },
+  {
+    slug: "ws-premed-outreach",
+    chapter: "workshops",
+    category: "Outreach",
+    title: "Talking to pre-med students",
+    caption:
+      "Speaking with pre-med students about what medical training actually asks of you, and why it's worth it.",
+  },
+  {
+    slug: "ws-delegates",
+    chapter: "workshops",
+    category: "Workshop",
+    title: "Workshop delegates",
+    caption: "With fellow delegates at a workshop session.",
+  },
+  {
+    slug: "ws-session",
+    chapter: "workshops",
+    category: "Workshop",
+    title: "In session",
+    caption: "Another workshop, another room of people learning something hands-on.",
+  },
+
+  // ── Campus & Clinical Skills ─────────────────────────────────────────────
+  {
+    slug: "campus-main",
+    chapter: "campus",
+    category: "Campus",
+    title: "The main campus",
+    caption: "Medical University of Łódź — the building this whole story runs through.",
+    featured: true,
+  },
+  {
+    slug: "campus-library",
+    chapter: "campus",
+    category: "Campus",
+    title: "The university library",
+    caption: "Where most of the degree actually happens.",
+  },
+  {
+    slug: "campus-library-study",
+    chapter: "campus",
+    category: "Study",
+    title: "A day in the stacks",
+    caption: "Another long session between the shelves.",
+  },
+  {
+    slug: "campus-lectures",
+    chapter: "campus",
+    category: "Campus",
+    title: "Lectures in Łódź",
+    caption: "The lecture hall — where the theory arrives before the wards make it real.",
+  },
+  {
+    slug: "campus-study-session",
+    chapter: "campus",
+    category: "Study",
+    title: "A normal study session",
+    caption: "No occasion, no deadline photo — just the ordinary work that adds up.",
+  },
+  {
+    slug: "campus-microbiology",
+    chapter: "campus",
+    category: "Laboratory",
+    title: "Culturing in microbiology",
+    caption: "Plating and culturing — learning to read what grows and what it means clinically.",
+  },
+  {
+    slug: "campus-lab-test",
+    chapter: "campus",
+    category: "Laboratory",
+    title: "In the lab",
+    caption: "Bench work — the diagnostics behind the numbers that turn up on a ward round.",
+  },
+  {
+    slug: "campus-suturing",
+    chapter: "campus",
+    category: "Clinical Skills",
+    title: "Suturing practice",
+    caption: "Learning the stitch — and quietly wondering whether surgery is the answer.",
+    featured: true,
+  },
+  {
+    slug: "campus-surgery",
+    chapter: "campus",
+    category: "Clinical Skills",
+    title: "Drawn to surgery",
+    caption: "The pull toward the operating theatre, still an open question.",
+  },
+
+  // ── People & Downtime ────────────────────────────────────────────────────
+  {
+    slug: "people-favourites",
+    chapter: "people",
+    category: "Friends",
+    title: "Favourite people",
+    caption: "The classmates who make the long days considerably shorter.",
+    featured: true,
+  },
+  {
+    slug: "people-study-friends",
+    chapter: "people",
+    category: "Friends",
+    title: "Good company, still studying",
+    caption: "Learning goes faster in company — the study group that doubles as the friendship group.",
+  },
+  {
+    slug: "people-batchmates",
+    chapter: "people",
+    category: "Friends",
+    title: "The batch",
+    caption: "With the batch mates who started when he did.",
+  },
+  {
+    slug: "people-staff",
+    chapter: "people",
+    category: "Faculty",
+    title: "With the English Division staff",
+    caption:
+      "Alongside the staff of the English Division at the Medical University of Łódź.",
+  },
+  {
+    slug: "people-park",
+    chapter: "people",
+    category: "Downtime",
+    title: "The park",
+    caption: "The reset button — a walk in the park to balance out everything else.",
+  },
+
+  // ── Others ───────────────────────────────────────────────────────────────
+  {
+    slug: "other-white-coat",
+    chapter: "others",
+    category: "Portrait",
+    title: "Coat on, stethoscope on",
+    caption: "The uniform that still doesn't quite feel ordinary.",
+  },
+  {
+    slug: "other-medical-passion",
+    chapter: "others",
+    category: "Portrait",
+    title: "Why medicine",
+    caption: "The reason underneath all of it.",
+  },
+];
+
+/**
+ * Chapters with their photos attached, each carrying `flatIndex` — its position
+ * in `journey`. The lightbox, its prev/next wrap, and the counter all address
+ * photos by that flat index, so grouped views must hand it back unchanged.
+ */
+export const journeyGroups = journeyChapters.map((chapter) => ({
+  ...chapter,
+  items: journey.flatMap((item, flatIndex) =>
+    item.chapter === chapter.id ? [{ ...item, flatIndex }] : [],
+  ),
+}));
+
+if (process.env.NODE_ENV !== "production") {
+  const grouped = journeyGroups.reduce((n, g) => n + g.items.length, 0);
+  if (grouped !== journey.length) {
+    const known = new Set(journeyChapters.map((c) => c.id));
+    const orphans = journey.filter((i) => !known.has(i.chapter)).map((i) => i.slug);
+    throw new Error(
+      `journey: ${journey.length} photos but ${grouped} grouped. Unknown chapter on: ${orphans.join(", ")}`,
+    );
+  }
+}
+
+/** Indices into `journey` for the photos that appear in the rotating showcase. */
+export const featuredIndices = journey.flatMap((item, i) => (item.featured ? [i] : []));
 
 export const contact = {
   email: "kishorekumarmed01@gmail.com",

@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Education from "@/components/Education";
+import Affiliations from "@/components/Affiliations";
 import ClinicalExperience from "@/components/ClinicalExperience";
 import Research from "@/components/Research";
 import Leadership from "@/components/Leadership";
@@ -22,6 +23,7 @@ export default function Home() {
         <Hero />
         <About />
         <Education />
+        <Affiliations />
         <ClinicalExperience />
         <Research />
         <Leadership />

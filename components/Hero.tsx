@@ -24,7 +24,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="grid-texture absolute inset-0" />
         <div className="absolute -top-40 right-[-15%] h-[34rem] w-[34rem] rounded-full bg-accent-soft/70 blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[-10%] h-[26rem] w-[26rem] rounded-full bg-teal-soft/60 blur-3xl" />
+        <div className="absolute bottom-[-20%] left-[-10%] h-[26rem] w-[26rem] rounded-full bg-sky/10 blur-3xl" />
       </div>
 
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
@@ -96,7 +96,7 @@ export default function Hero() {
             <a
               href={asset(contact.cv)}
               download
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-canvas-raised px-6 py-3.5 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
             >
               <Download className="h-4 w-4" />
               Download CV
@@ -118,9 +118,9 @@ export default function Hero() {
           className="relative order-1 mx-auto w-full max-w-[22rem] lg:order-2 lg:max-w-[26rem]"
         >
           {/* offset decorative panel */}
-          <div className="absolute -inset-3 -rotate-2 rounded-[2.25rem] bg-gradient-to-br from-accent/12 via-teal/10 to-transparent" />
+          <div className="absolute -inset-3 -rotate-2 rounded-[2.25rem] bg-gradient-to-br from-accent/12 via-sky/10 to-transparent" />
 
-          <div className="relative overflow-hidden rounded-[2rem] border border-line bg-white shadow-[0_24px_70px_-30px_rgba(10,20,37,0.4)]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-line bg-canvas-raised shadow-[0_24px_70px_-30px_color-mix(in_srgb,var(--ink)_40%,transparent)]">
             <Image
               src={asset(profile.portrait)}
               alt={`Portrait of ${profile.name}`}
@@ -130,7 +130,7 @@ export default function Hero() {
               sizes="(max-width: 1024px) 22rem, 26rem"
               className="h-auto w-full object-cover"
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white via-white/70 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-canvas-raised via-canvas-raised/70 to-transparent" />
           </div>
 
           <motion.div
@@ -139,7 +139,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.7, ease }}
             className="absolute -bottom-5 -left-3 rounded-2xl border border-line bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm sm:-left-6"
           >
-            <p className="text-[10.5px] font-semibold tracking-[0.12em] text-teal uppercase">
+            <p className="text-[10.5px] font-semibold tracking-[0.12em] text-sky uppercase">
               Currently
             </p>
             <p className="mt-0.5 font-display text-[15px] text-ink">

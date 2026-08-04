@@ -12,13 +12,13 @@ export default function Conferences() {
       />
 
       <div className="relative mt-14 pl-8 sm:pl-10">
-        <span className="absolute top-2 bottom-2 left-[5px] w-px bg-gradient-to-b from-accent via-teal to-transparent sm:left-[7px]" />
+        <span className="absolute top-2 bottom-2 left-[5px] w-px bg-gradient-to-b from-accent-deep via-sky to-transparent sm:left-[7px]" />
 
         <div className="space-y-10">
           {conferences.map((conf, i) => (
             <Reveal key={conf.name} delay={i * 0.08}>
               <article className="relative">
-                <span className="absolute top-1.5 -left-[27px] h-3 w-3 rounded-full border-2 border-white bg-accent shadow-sm ring-1 ring-line sm:-left-[31px]" />
+                <span className="absolute top-1.5 -left-[27px] h-3 w-3 rounded-full border-2 border-canvas-subtle bg-accent shadow-sm ring-1 ring-line sm:-left-[31px]" />
 
                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                   <span className="font-display text-[15px] text-ink-muted tabular-nums">

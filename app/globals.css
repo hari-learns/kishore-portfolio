@@ -1,18 +1,26 @@
 @import "tailwindcss";
 
+/* Blue + white medical palette. Every hue sits between 202° and 222° so the
+   whole page reads as one family — there is deliberately no second hue.
+
+   `--sky` and `--sky-light` are NOT interchangeable. The secondary accent is
+   used both as text on white and as text on `--ink`, and no single value can
+   pass WCAG AA on both: AA on white needs relative luminance <= 0.176, AA on
+   #0b1b30 needs >= 0.229. `--sky` serves light surfaces, `--sky-light` dark. */
 :root {
   --canvas: #ffffff;
-  --canvas-subtle: #f6f9fc;
+  --canvas-subtle: #f4f8fd;
   --canvas-raised: #ffffff;
-  --ink: #0a1425;
-  --ink-soft: #4b5a6e;
-  --ink-muted: #8996a8;
-  --accent: #1249c9;
-  --accent-deep: #0d3494;
-  --accent-soft: #e8effc;
-  --teal: #0d8a83;
-  --teal-soft: #e2f4f2;
-  --line: #e4eaf2;
+  --ink: #0b1b30;
+  --ink-soft: #48586e;
+  --ink-muted: #647289;
+  --accent: #1550cd;
+  --accent-deep: #0f3a9c;
+  --accent-soft: #e8effd;
+  --sky: #0f6fa8;
+  --sky-soft: #e3f1fb;
+  --sky-light: #8fcbf2;
+  --line: #e2e8f3;
 }
 
 @theme inline {
@@ -25,8 +33,9 @@
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-accent-soft: var(--accent-soft);
-  --color-teal: var(--teal);
-  --color-teal-soft: var(--teal-soft);
+  --color-sky: var(--sky);
+  --color-sky-soft: var(--sky-soft);
+  --color-sky-light: var(--sky-light);
   --color-line: var(--line);
   --font-display: var(--font-display);
   --font-body: var(--font-body);
@@ -50,7 +59,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #fff;
+  color: var(--canvas);
 }
 
 .font-display {
@@ -65,7 +74,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--teal);
+  color: var(--sky);
   font-weight: 500;
 }
 
@@ -73,15 +82,24 @@ body {
   content: "";
   width: 1.75rem;
   height: 1px;
-  background: var(--teal);
+  background: var(--sky);
   opacity: 0.55;
 }
 
-/* Fine grid texture for hero */
+/* Fine grid texture for hero. Derived from --accent so it can never drift
+   out of sync with the palette the way a hardcoded rgba() did. */
 .grid-texture {
   background-image:
-    linear-gradient(to right, rgba(18, 73, 201, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(18, 73, 201, 0.045) 1px, transparent 1px);
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent) 4.5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent) 4.5%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
 }

@@ -23,7 +23,7 @@ export default function Leadership() {
                 <h3 className="font-display text-[1.45rem] leading-snug tracking-tight transition-colors group-hover:text-accent">
                   {item.role}
                 </h3>
-                <p className="mt-1.5 text-[13px] tracking-wide text-teal uppercase">
+                <p className="mt-1.5 text-[13px] tracking-wide text-sky uppercase">
                   {item.org}
                 </p>
               </div>

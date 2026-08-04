@@ -42,7 +42,7 @@ export default function About() {
             {about.interests.map((interest) => (
               <div
                 key={interest}
-                className="group bg-white px-4 py-6 text-center transition-colors hover:bg-accent-soft/50"
+                className="group bg-canvas-raised px-4 py-6 text-center transition-colors hover:bg-accent-soft/50"
               >
                 <p className="font-display text-[15px] leading-snug text-ink transition-colors group-hover:text-accent">
                   {interest}
