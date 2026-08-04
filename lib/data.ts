@@ -34,6 +34,7 @@ export const education = [
     period: "2022 — Present",
     degree: "MD Program (MBBS)",
     school: "Medical University of Łódź",
+    schoolHref: "https://en.umed.pl/",
     detail: "English Division · Łódź, Poland",
     highlights: [
       "Clinical training across internal medicine and subspecialties",
@@ -47,31 +48,33 @@ export const education = [
 export const clinicalExperience = {
   featured: {
     institution: "Mayo Clinic",
+    institutionHref: "https://www.mayoclinic.org/",
     department: "Nephrology",
     location: "Rochester, Minnesota, USA",
-    duration: "One-month observership",
+    duration: "September 2026",
+    status: "Upcoming",
     summary:
-      "A clinical observership in nephrology at one of the world's leading academic medical centres, embedded in a research-driven care environment.",
+      "A one-month clinical observership in nephrology at one of the world's leading academic medical centres, confirmed for September 2026 — training inside a research-driven care environment.",
     takeaways: [
       {
         title: "Multidisciplinary care",
         detail:
-          "Observed how nephrologists, transplant teams, pharmacists, and allied specialists converge on a single patient plan.",
+          "How nephrologists, transplant teams, pharmacists, and allied specialists converge on a single patient plan.",
       },
       {
         title: "Academic medicine",
         detail:
-          "Experienced the teaching-hospital rhythm — rounds, case conferences, and continuous evidence appraisal.",
+          "The teaching-hospital rhythm — rounds, case conferences, and continuous evidence appraisal.",
       },
       {
         title: "Clinical decision making",
         detail:
-          "Followed the reasoning behind complex renal cases, from differential to management under genuine uncertainty.",
+          "The reasoning behind complex renal cases, from differential to management under genuine uncertainty.",
       },
       {
         title: "Research-integrated practice",
         detail:
-          "Saw translational research feeding directly into protocol and bedside decisions.",
+          "How translational research feeds directly into protocol and bedside decisions.",
       },
     ],
   },
@@ -314,6 +317,13 @@ export const journeyChapters = [
     blurb: "Research, conferences, and teaching the students who were where he started.",
   },
   {
+    id: "meetings",
+    label: "Meetings & Mentors",
+    period: "Ongoing",
+    blurb:
+      "The individual conversations — with physicians and scientists — that mattered as much as the sessions themselves.",
+  },
+  {
     id: "workshops",
     label: "Workshops & Teaching",
     period: "Ongoing",
@@ -382,6 +392,15 @@ export const journey: JourneyItem[] = [
     title: "Where it started",
     caption: "The first year in Łódź, a long way from home and entirely at the beginning.",
   },
+  {
+    slug: "ty-portrait",
+    chapter: "first-year",
+    category: "Clinical Skills",
+    title: "First sutures, in public",
+    caption:
+      "Practising sutures at “I'm Gonna Be a Scientist” — gloves on, needle in hand, in front of a room for the first time.",
+    featured: true,
+  },
 
   // ── Second Year ──────────────────────────────────────────────────────────
   {
@@ -396,19 +415,12 @@ export const journey: JourneyItem[] = [
 
   // ── Third Year ───────────────────────────────────────────────────────────
   {
-    slug: "ty-portrait",
-    chapter: "third-year",
-    category: "Milestone",
-    title: "Third year",
-    caption: "Pre-clinical behind him, the wards ahead.",
-    featured: true,
-  },
-  {
     slug: "ty-coffee",
     chapter: "third-year",
     category: "Downtime",
     title: "Fuelled accordingly",
     caption: "Third year ran largely on coffee, and made no secret of it.",
+    featured: true,
   },
   {
     slug: "ty-coffee-late",
@@ -435,71 +447,6 @@ export const journey: JourneyItem[] = [
     title: "In the hall",
     caption:
       "Applause in the auditorium, white coats folded over the seat backs — the ceremony that marks the halfway point of a long degree.",
-  },
-  {
-    slug: "pcsk9-case",
-    chapter: "now",
-    category: "Research",
-    title: "Presenting a cardiology case report",
-    caption:
-      "Presenting author on “Targeted PCSK9 Inhibitor Therapy in a Statin-Intolerant Patient with Elevated Lipoprotein(a) Following TAVI” — Biegański Hospital, Łódź.",
-    featured: true,
-  },
-  {
-    slug: "polytrauma-case",
-    chapter: "now",
-    category: "Research",
-    title: "Polytrauma case report",
-    caption:
-      "Co-author on a polytrauma case following a motorcycle accident, with the Department of Arthroscopy, Minimally Invasive Surgery and Sports Traumatology.",
-  },
-  {
-    slug: "mircim",
-    chapter: "now",
-    category: "Mentorship",
-    title: "Meeting a Mayo Clinic physician",
-    caption:
-      "A conversation with a Mayo Clinic physician after her session at MIRCIM 2026 — the shortest distance between where you are training and where you are headed.",
-    featured: true,
-  },
-  {
-    slug: "prabhu-mircim",
-    chapter: "now",
-    category: "Mentorship",
-    title: "With Prabhu Mathiyalagan",
-    caption:
-      "At MIRCIM 2026 with Prabhu Mathiyalagan — researcher and founder, and one of the more useful conversations of the conference.",
-    links: [
-      {
-        label: "ResearchGate",
-        href: "https://www.researchgate.net/profile/Prabhu-Mathiyalagan",
-      },
-      { label: "Benthos", href: "https://www.mybenthos.com/" },
-    ],
-  },
-  {
-    slug: "mircim-peers",
-    chapter: "now",
-    category: "Conference",
-    title: "Delegates at MIRCIM",
-    caption:
-      "With fellow delegates — student-researchers from across the world comparing notes between sessions.",
-  },
-  {
-    slug: "mircim-networking",
-    chapter: "now",
-    category: "Conference",
-    title: "Between sessions",
-    caption:
-      "The other half of any conference — the conversations over lunch that turn a lecture hall into a network.",
-  },
-  {
-    slug: "poznan-conference",
-    chapter: "now",
-    category: "Conference",
-    title: "Poznan University of Medical Sciences",
-    caption:
-      "At the AMSA International Students' Conference, hosted by Poznan University of Medical Sciences.",
   },
   {
     slug: "clinical-group",
@@ -576,6 +523,41 @@ export const journey: JourneyItem[] = [
     featured: true,
   },
 
+  // ── Meetings & Mentors ───────────────────────────────────────────────────
+  {
+    slug: "mircim",
+    chapter: "meetings",
+    category: "Mentorship",
+    title: "Meeting a Mayo Clinic physician",
+    caption:
+      "A conversation with a Mayo Clinic physician after her session at MIRCIM 2026 — the shortest distance between where you are training and where you are headed.",
+    featured: true,
+  },
+  {
+    slug: "prabhu-mircim",
+    chapter: "meetings",
+    category: "Mentorship",
+    title: "With Prabhu Mathiyalagan",
+    caption:
+      "At MIRCIM 2026 with Prabhu Mathiyalagan — researcher and founder, and one of the more useful conversations of the conference.",
+    links: [
+      {
+        label: "ResearchGate",
+        href: "https://www.researchgate.net/profile/Prabhu-Mathiyalagan",
+      },
+      { label: "Benthos", href: "https://www.mybenthos.com/" },
+    ],
+  },
+  {
+    slug: "ws-pathology-taran",
+    chapter: "meetings",
+    category: "Mentorship",
+    title: "With Prof. Katarzyna Taran",
+    caption:
+      "With Prof. Katarzyna Taran, marking the launch of her book on integrated pathology — an honour to have helped organise her workshop.",
+    featured: true,
+  },
+
   // ── Workshops & Teaching ─────────────────────────────────────────────────
   {
     slug: "ws-anatomy-lodz-2025",
@@ -600,15 +582,6 @@ export const journey: JourneyItem[] = [
     title: "Anatomy workshop, Bydgoszcz",
     caption:
       "Taking the anatomy workshop beyond Łódź, to the Medical University in Bydgoszcz.",
-  },
-  {
-    slug: "ws-pathology-taran",
-    chapter: "workshops",
-    category: "Organiser",
-    title: "Pathology, with Prof. Katarzyna Taran",
-    caption:
-      "Helping organise Prof. Katarzyna Taran's pathology workshop, alongside the book she is preparing for medical students.",
-    featured: true,
   },
   {
     slug: "ws-osce-planning",
@@ -646,6 +619,47 @@ export const journey: JourneyItem[] = [
     category: "Workshop",
     title: "In session",
     caption: "Another workshop, another room of people learning something hands-on.",
+  },
+  {
+    slug: "pcsk9-case",
+    chapter: "workshops",
+    category: "Research",
+    title: "Presenting a cardiology case report",
+    caption:
+      "Presenting author on “Targeted PCSK9 Inhibitor Therapy in a Statin-Intolerant Patient with Elevated Lipoprotein(a) Following TAVI” — Biegański Hospital, Łódź.",
+    featured: true,
+  },
+  {
+    slug: "polytrauma-case",
+    chapter: "workshops",
+    category: "Research",
+    title: "Polytrauma case report",
+    caption:
+      "Co-author on a polytrauma case following a motorcycle accident, with the Department of Arthroscopy, Minimally Invasive Surgery and Sports Traumatology.",
+  },
+  {
+    slug: "poznan-conference",
+    chapter: "workshops",
+    category: "Conference",
+    title: "Poznan University of Medical Sciences",
+    caption:
+      "At the AMSA International Students' Conference, hosted by Poznan University of Medical Sciences.",
+  },
+  {
+    slug: "mircim-peers",
+    chapter: "workshops",
+    category: "Conference",
+    title: "Delegates at MIRCIM",
+    caption:
+      "With fellow delegates — student-researchers from across the world comparing notes between sessions.",
+  },
+  {
+    slug: "mircim-networking",
+    chapter: "workshops",
+    category: "Conference",
+    title: "Between sessions",
+    caption:
+      "The other half of any conference — the conversations over lunch that turn a lecture hall into a network.",
   },
 
   // ── Campus & Clinical Skills ─────────────────────────────────────────────

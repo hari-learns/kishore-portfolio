@@ -10,7 +10,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const credentials = [
   { value: "5th Year", label: "MBBS · MD Programme" },
-  { value: "Mayo Clinic", label: "Nephrology Observership" },
+  { value: "Mayo Clinic", label: "Nephrology Observership · Sept 2026" },
   { value: "IOCCM 2025", label: "Published Abstract" },
 ];
 

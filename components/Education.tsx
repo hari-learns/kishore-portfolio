@@ -25,7 +25,14 @@ export default function Education() {
                 <h3 className="font-display text-2xl leading-tight tracking-tight sm:text-3xl">
                   {entry.degree}
                 </h3>
-                <p className="mt-2 text-[17px] font-medium text-ink">{entry.school}</p>
+                <a
+                  href={entry.schoolHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block text-[17px] font-medium text-ink transition-colors hover:text-accent"
+                >
+                  {entry.school}
+                </a>
                 <p className="mt-0.5 text-[14px] text-ink-muted">{entry.detail}</p>
 
                 <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-3.5 sm:grid-cols-2">

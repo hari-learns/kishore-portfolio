@@ -23,15 +23,20 @@ export default function ClinicalExperience() {
 
           <div className="relative">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.12em] uppercase backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-sky-light" />
-              Featured Experience
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sky-light" />
+              {featured.status} — Featured Experience
             </span>
 
             <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
-                <h3 className="font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1] tracking-tight">
+                <a
+                  href={featured.institutionHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block font-display text-[clamp(2.25rem,5vw,3.5rem)] leading-[1] tracking-tight transition-colors hover:text-sky-light"
+                >
                   {featured.institution}
-                </h3>
+                </a>
                 <p className="mt-3 font-display text-xl text-sky-light italic">
                   {featured.department}
                 </p>

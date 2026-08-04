@@ -15,13 +15,15 @@ const affiliations = [
     src: "/logos/lodz.jpg",
     name: "Medical University of Łódź",
     relationship: "MD Programme · 2022 — Present",
+    href: "https://en.umed.pl/",
     width: 400,
     height: 150,
   },
   {
     src: "/logos/mayo.jpg",
     name: "Mayo Clinic",
-    relationship: "Nephrology Observership",
+    relationship: "Nephrology Observership · Upcoming, Sept 2026",
+    href: "https://www.mayoclinic.org/",
     width: 400,
     height: 400,
   },
@@ -40,25 +42,30 @@ export default function Affiliations() {
         <div className="mt-8 flex flex-col items-center justify-center gap-10 sm:flex-row sm:gap-16">
           {affiliations.map((item, i) => (
             <Reveal key={item.name} delay={0.06 * i}>
-              <div className="flex flex-col items-center gap-3 text-center">
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center gap-3 text-center"
+              >
                 <div className="flex h-16 items-center">
                   <Image
                     src={asset(item.src)}
                     alt={item.name}
                     width={item.width}
                     height={item.height}
-                    className="h-full w-auto object-contain"
+                    className="h-full w-auto object-contain transition-transform group-hover:scale-105"
                   />
                 </div>
                 <div>
-                  <p className="font-display text-[15px] tracking-tight text-ink">
+                  <p className="font-display text-[15px] tracking-tight text-ink transition-colors group-hover:text-accent">
                     {item.name}
                   </p>
                   <p className="mt-0.5 text-[12.5px] text-ink-muted">
                     {item.relationship}
                   </p>
                 </div>
-              </div>
+              </a>
             </Reveal>
           ))}
         </div>
