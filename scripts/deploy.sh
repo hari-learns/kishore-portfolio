@@ -24,4 +24,4 @@ git -c user.name="$NAME" -c user.email="$EMAIL" \
   commit -q -m "Deploy portfolio — $(date -u '+%Y-%m-%d %H:%M UTC')"
 git push --force --quiet "$REPO_URL" gh-pages:gh-pages
 
-echo "Deployed → https://hari-learns.github.io/kishore-portfolio/"
+echo "Deployed → https://kishorekumardoc.com/"
