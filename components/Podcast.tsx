@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Mic } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 
@@ -37,6 +38,7 @@ export default function Podcast() {
     <Section id="podcast">
       <SectionHeading
         eyebrow="Podcast"
+        icon={Mic}
         title="What is Psychodermatology?"
         intro="A panel discussion from the Medical University of Łódź — Multiple Perspectives."
         align="center"

@@ -1,5 +1,8 @@
+import { HeartHandshake } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
+import EcgLine from "@/components/EcgLine";
+import PulseMark from "@/components/PulseMark";
 import { leadership } from "@/lib/data";
 
 export default function Leadership() {
@@ -7,17 +10,30 @@ export default function Leadership() {
     <Section id="leadership">
       <SectionHeading
         eyebrow="Leadership"
+        icon={HeartHandshake}
         title="Building things for other students"
         intro="Roles centred on teaching, organising, mentoring, and representing the programme across international collaborations."
       />
 
-      <div className="mt-14 border-t border-line">
+      {/* The list's existing top rule doubles as a heartbeat that draws in on
+          scroll. Absolutely positioned decoration — the grid below is untouched. */}
+      <div className="relative mt-14 border-t border-line">
+        <EcgLine
+          repeat={5}
+          duration={2.6}
+          strokeClassName="text-sky"
+          className="pointer-events-none absolute inset-x-0 -top-6 h-12 w-full opacity-90"
+        />
+
         {leadership.map((item, i) => (
           <Reveal key={item.role} delay={i * 0.05}>
             <article className="group grid grid-cols-1 gap-4 border-b border-line py-8 transition-colors hover:bg-canvas-subtle/70 sm:grid-cols-[auto_1fr] sm:gap-10 sm:px-4 lg:grid-cols-[auto_0.9fr_1.1fr] lg:gap-14">
-              <span className="font-display text-[15px] text-ink-muted tabular-nums transition-colors group-hover:text-accent">
+              <PulseMark
+                delay={i * 0.05}
+                className="font-display text-[15px] text-ink-muted tabular-nums transition-colors group-hover:text-accent"
+              >
                 {String(i + 1).padStart(2, "0")}
-              </span>
+              </PulseMark>
 
               <div>
                 <h3 className="font-display text-[1.45rem] leading-snug tracking-tight transition-colors group-hover:text-accent">

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Hospital } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { asset } from "@/lib/basePath";
 
@@ -34,7 +35,8 @@ export default function Affiliations() {
     <section className="border-y border-line bg-canvas-subtle px-6 py-14 sm:px-8">
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
-          <p className="text-center text-[11px] font-semibold tracking-[0.14em] text-ink-muted uppercase">
+          <p className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.14em] text-ink-muted uppercase">
+            <Hospital className="h-4 w-4 text-sky" aria-hidden="true" />
             Affiliations
           </p>
         </Reveal>

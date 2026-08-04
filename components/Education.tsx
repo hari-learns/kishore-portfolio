@@ -1,3 +1,4 @@
+import { GraduationCap } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import { education } from "@/lib/data";
@@ -7,6 +8,7 @@ export default function Education() {
     <Section id="education" subtle>
       <SectionHeading
         eyebrow="Education"
+        icon={GraduationCap}
         title="Academic foundation"
         intro="Medical training in an international English-language programme, paired from the outset with research and teaching."
       />
@@ -33,7 +35,9 @@ export default function Education() {
                 >
                   {entry.school}
                 </a>
-                <p className="mt-0.5 text-[14px] text-ink-muted">{entry.detail}</p>
+                <p className="mt-0.5 text-[14px] text-ink-muted">
+                  {entry.detail}
+                </p>
 
                 <ul className="mt-7 grid grid-cols-1 gap-x-8 gap-y-3.5 sm:grid-cols-2">
                   {entry.highlights.map((highlight) => (

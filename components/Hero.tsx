@@ -2,16 +2,29 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, ArrowDown } from "lucide-react";
+import {
+  ArrowRight,
+  Download,
+  ArrowDown,
+  GraduationCap,
+  Hospital,
+  NotebookPen,
+} from "lucide-react";
+import EcgLine from "@/components/EcgLine";
+import FloatingGlyphs from "@/components/FloatingGlyphs";
 import { profile, contact } from "@/lib/data";
 import { asset } from "@/lib/basePath";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const credentials = [
-  { value: "5th Year", label: "MBBS · MD Programme" },
-  { value: "Mayo Clinic", label: "Nephrology Observership · Sept 2026" },
-  { value: "IOCCM 2025", label: "Published Abstract" },
+  { value: "5th Year", label: "MBBS · MD Programme", icon: GraduationCap },
+  {
+    value: "Mayo Clinic",
+    label: "Nephrology Observership · Sept 2026",
+    icon: Hospital,
+  },
+  { value: "IOCCM 2025", label: "Published Abstract", icon: NotebookPen },
 ];
 
 export default function Hero() {
@@ -20,11 +33,22 @@ export default function Hero() {
       id="top"
       className="relative overflow-hidden px-6 pt-32 pb-20 sm:px-8 sm:pt-36 lg:pt-40 lg:pb-24"
     >
-      {/* Background treatment */}
+      {/* Background treatment. Purely decorative and pointer-events-none —
+          nothing in here affects layout. */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="grid-texture absolute inset-0" />
         <div className="absolute -top-40 right-[-15%] h-[34rem] w-[34rem] rounded-full bg-accent-soft/70 blur-3xl" />
         <div className="absolute bottom-[-20%] left-[-10%] h-[26rem] w-[26rem] rounded-full bg-sky/10 blur-3xl" />
+        <EcgLine
+          repeat={6}
+          loop
+          duration={4}
+          strokeClassName="text-accent"
+          className="absolute inset-x-0 bottom-[16%] h-28 w-full opacity-[0.5]"
+        />
+        {/* Glyphs sit in the outer margins so they never sit under the
+            headline or the portrait card. */}
+        <FloatingGlyphs variant="hero" />
       </div>
 
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
@@ -63,7 +87,9 @@ export default function Hero() {
           >
             {profile.roles.map((role, i) => (
               <span key={role} className="flex items-center gap-3">
-                {i > 0 && <span className="h-1 w-1 rounded-full bg-ink-muted" />}
+                {i > 0 && (
+                  <span className="h-1 w-1 rounded-full bg-ink-muted" />
+                )}
                 <span className="text-[15px] font-medium tracking-wide text-ink sm:text-base">
                   {role}
                 </span>
@@ -145,7 +171,9 @@ export default function Hero() {
             <p className="mt-0.5 font-display text-[15px] text-ink">
               {profile.institution}
             </p>
-            <p className="text-[12px] text-ink-muted">{profile.institutionDetail}</p>
+            <p className="text-[12px] text-ink-muted">
+              {profile.institutionDetail}
+            </p>
           </motion.div>
         </motion.div>
       </div>
@@ -158,8 +186,15 @@ export default function Hero() {
         className="mx-auto mt-20 grid w-full max-w-6xl grid-cols-1 divide-y divide-line border-y border-line sm:grid-cols-3 sm:divide-x sm:divide-y-0"
       >
         {credentials.map((item) => (
-          <div key={item.value} className="px-2 py-5 sm:px-6 sm:py-6 sm:first:pl-0">
-            <p className="font-display text-xl tracking-tight text-ink sm:text-2xl">
+          <div
+            key={item.value}
+            className="px-2 py-5 sm:px-6 sm:py-6 sm:first:pl-0"
+          >
+            <p className="flex items-center gap-2 font-display text-xl tracking-tight text-ink sm:text-2xl">
+              <item.icon
+                className="h-4.5 w-4.5 shrink-0 text-sky"
+                aria-hidden="true"
+              />
               {item.value}
             </p>
             <p className="mt-1 text-[13px] text-ink-soft">{item.label}</p>

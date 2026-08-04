@@ -1,14 +1,19 @@
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, BookHeart } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
+import FloatingGlyphs from "@/components/FloatingGlyphs";
+import PulseMark from "@/components/PulseMark";
 import { medicalEducation } from "@/lib/data";
 
 export default function MedicalEducation() {
   return (
-    <Section id="teaching" subtle>
+    <Section id="teaching" subtle className="relative overflow-hidden">
+      <FloatingGlyphs variant="teaching" />
+
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <SectionHeading
           eyebrow="Medical Education"
+          icon={BookHeart}
           title={
             <>
               Teaching as a way
@@ -24,15 +29,19 @@ export default function MedicalEducation() {
               key={item.title}
               delay={i * 0.06}
               className={`bg-canvas-raised ${
-                i === medicalEducation.length - 1 && medicalEducation.length % 2 !== 0
+                i === medicalEducation.length - 1 &&
+                medicalEducation.length % 2 !== 0
                   ? "sm:col-span-2"
                   : ""
               }`}
             >
               <div className="group h-full p-7 transition-colors hover:bg-canvas-subtle">
-                <span className="font-display text-[13px] text-sky tabular-nums">
+                <PulseMark
+                  delay={i * 0.06}
+                  className="font-display text-[13px] text-sky tabular-nums"
+                >
                   {String(i + 1).padStart(2, "0")}
-                </span>
+                </PulseMark>
                 <h3 className="mt-3 font-display text-[1.25rem] leading-snug tracking-tight transition-colors group-hover:text-accent">
                   {item.title}
                 </h3>

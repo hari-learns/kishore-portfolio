@@ -1,7 +1,23 @@
-import { MapPin, CalendarDays } from "lucide-react";
+import {
+  MapPin,
+  CalendarDays,
+  HeartPulse,
+  Users,
+  GraduationCap,
+  Brain,
+  Microscope,
+  type LucideIcon,
+} from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import { clinicalExperience } from "@/lib/data";
+
+const takeawayIcons: Record<string, LucideIcon> = {
+  "Multidisciplinary care": Users,
+  "Academic medicine": GraduationCap,
+  "Clinical decision making": Brain,
+  "Research-integrated practice": Microscope,
+};
 
 export default function ClinicalExperience() {
   const { featured } = clinicalExperience;
@@ -10,6 +26,7 @@ export default function ClinicalExperience() {
     <Section id="experience">
       <SectionHeading
         eyebrow="Clinical Experience"
+        icon={HeartPulse}
         title="Training inside academic medicine"
       />
 
@@ -59,14 +76,23 @@ export default function ClinicalExperience() {
             </p>
 
             <div className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2">
-              {featured.takeaways.map((item) => (
-                <div key={item.title} className="bg-ink p-6 sm:p-7">
-                  <h4 className="font-display text-lg text-white">{item.title}</h4>
-                  <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/55">
-                    {item.detail}
-                  </p>
-                </div>
-              ))}
+              {featured.takeaways.map((item) => {
+                const Icon = takeawayIcons[item.title] ?? HeartPulse;
+                return (
+                  <div key={item.title} className="bg-ink p-6 sm:p-7">
+                    <Icon
+                      className="mb-3 h-5 w-5 text-sky-light"
+                      aria-hidden="true"
+                    />
+                    <h4 className="font-display text-lg text-white">
+                      {item.title}
+                    </h4>
+                    <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/55">
+                      {item.detail}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </article>

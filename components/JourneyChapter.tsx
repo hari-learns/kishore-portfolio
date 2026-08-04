@@ -2,8 +2,32 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  Sparkles,
+  BookOpen,
+  Stethoscope,
+  Activity,
+  HeartHandshake,
+  Presentation,
+  Microscope,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import type { journeyGroups } from "@/lib/data";
 import { asset } from "@/lib/basePath";
+
+/** Keyed by chapter id, which is stable — labels are copy and may change. */
+const chapterIcons: Record<string, LucideIcon> = {
+  "first-year": Sparkles,
+  "second-year": BookOpen,
+  "third-year": Stethoscope,
+  now: Activity,
+  meetings: HeartHandshake,
+  workshops: Presentation,
+  campus: Microscope,
+  people: Users,
+  others: Sparkles,
+};
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -27,6 +51,8 @@ export default function JourneyChapter({
 }) {
   if (group.items.length === 0) return null;
 
+  const Icon = chapterIcons[group.id] ?? Sparkles;
+
   return (
     <div className="relative pl-8 sm:pl-10">
       {/* Timeline node, matching the vocabulary used in Conferences */}
@@ -34,7 +60,8 @@ export default function JourneyChapter({
 
       <header className="pr-2">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h3 className="font-display text-[1.6rem] leading-tight tracking-tight sm:text-[1.8rem]">
+          <h3 className="flex items-center gap-2.5 font-display text-[1.6rem] leading-tight tracking-tight sm:text-[1.8rem]">
+            <Icon className="h-5 w-5 shrink-0 text-sky" aria-hidden="true" />
             {group.label}
           </h3>
           {group.period && (

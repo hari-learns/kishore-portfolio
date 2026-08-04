@@ -1,3 +1,4 @@
+import { Presentation } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import { conferences } from "@/lib/data";
@@ -7,6 +8,7 @@ export default function Conferences() {
     <Section id="conferences" subtle>
       <SectionHeading
         eyebrow="Conferences"
+        icon={Presentation}
         title="Presenting & representing"
         intro="International academic forums for presenting research and collaborating with student-researchers across borders."
       />

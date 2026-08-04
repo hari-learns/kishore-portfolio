@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
+import { ChevronLeft, ChevronRight, LayoutGrid, Activity } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import JourneyModal from "@/components/JourneyModal";
@@ -84,6 +84,7 @@ export default function Journey() {
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading
           eyebrow="Journey"
+          icon={Activity}
           title="Moments along the way"
           intro="Teaching, research, conferences, and the long quiet hours in between."
         />
@@ -211,7 +212,9 @@ export default function Journey() {
                     >
                       <span
                         className={`block h-full rounded-full transition-all duration-500 ${
-                          i === pos ? "w-full bg-sky-light" : "w-0 bg-white/60 group-hover:w-full"
+                          i === pos
+                            ? "w-full bg-sky-light"
+                            : "w-0 bg-white/60 group-hover:w-full"
                         }`}
                       />
                     </button>

@@ -1,13 +1,22 @@
-import { FileText, Dna } from "lucide-react";
+import {
+  FileText,
+  Dna,
+  Microscope,
+  NotebookPen,
+} from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
+import FloatingGlyphs from "@/components/FloatingGlyphs";
 import { publications, ongoingResearch, pharmacogenomics } from "@/lib/data";
 
 export default function Research() {
   return (
-    <Section id="research" subtle>
+    <Section id="research" subtle className="relative overflow-hidden">
+      <FloatingGlyphs variant="research" />
+
       <SectionHeading
         eyebrow="Research"
+        icon={Microscope}
         title="Questions worth following"
         intro="Work spanning cardiovascular medicine, onco-nephrology, neuro-oncology, and the pharmacogenomics of individualised prescribing."
       />
@@ -34,7 +43,9 @@ export default function Research() {
                   <span className="rounded-full bg-ink px-3 py-1.5 text-[11px] font-semibold tracking-[0.1em] text-white uppercase">
                     {pub.venue}
                   </span>
-                  <span className="text-[12.5px] text-ink-muted">{pub.type}</span>
+                  <span className="text-[12.5px] text-ink-muted">
+                    {pub.type}
+                  </span>
                   <span className="ml-auto inline-flex items-center gap-1.5 text-[12.5px] font-medium text-sky">
                     <span className="h-1.5 w-1.5 rounded-full bg-sky" />
                     {pub.status}
@@ -69,7 +80,7 @@ export default function Research() {
       <div className="mt-20">
         <Reveal>
           <div className="flex items-center gap-3">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sky" />
+            <NotebookPen className="h-4 w-4 text-accent" />
             <h3 className="text-[12px] font-semibold tracking-[0.14em] text-ink uppercase">
               Ongoing Publications
             </h3>
@@ -122,8 +133,8 @@ export default function Research() {
 
         <Reveal delay={0.06}>
           <p className="mt-6 max-w-2xl text-[16.5px] leading-relaxed text-ink-soft">
-            Pharmacogenomic markers studied for their role in translating inherited
-            variation into safer, individually calibrated prescribing.
+            Pharmacogenomic markers studied for their role in translating
+            inherited variation into safer, individually calibrated prescribing.
           </p>
         </Reveal>
 
