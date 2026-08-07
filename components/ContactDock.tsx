@@ -5,6 +5,27 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail } from "lucide-react";
 import { contact } from "@/lib/data";
 
+/** lucide dropped its brand glyphs, so Instagram is hand-rolled (Feather's
+ * generic outline mark — a rounded square, lens, and flash dot). */
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
 function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
@@ -34,6 +55,18 @@ export default function ContactDock() {
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="fixed right-5 bottom-5 z-40 flex flex-col gap-2.5"
         >
+          <motion.a
+            href={contact.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            whileHover={{ scale: 1.07 }}
+            whileTap={{ scale: 0.94 }}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-line bg-canvas-raised text-ink-soft shadow-lg shadow-black/10 transition-colors hover:text-accent"
+          >
+            <InstagramIcon className="h-[19px] w-[19px]" />
+          </motion.a>
+
           <motion.a
             href={`https://wa.me/${contact.whatsappNumber}`}
             target="_blank"

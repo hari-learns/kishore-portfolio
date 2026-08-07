@@ -855,6 +855,7 @@ export const contact = {
   email: "kishorekumarmed01@gmail.com",
   whatsappNumber: "919840934375",
   linkedin: "https://www.linkedin.com/in/kishore-muthukumar-654925246/",
+  instagram: "https://www.instagram.com/kishore_kk_kumar",
   orcid: "https://orcid.org/0000-0000-0000-0000", // PLACEHOLDER
   researchgate: "https://www.researchgate.net/profile/placeholder", // PLACEHOLDER
   cv: "/kishore-muthukumar-cv.pdf", // PLACEHOLDER — drop the PDF into /public
