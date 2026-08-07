@@ -12,6 +12,7 @@ import Journey from "@/components/Journey";
 import MedicalEducation from "@/components/MedicalEducation";
 import Skills from "@/components/Skills";
 import FutureVision from "@/components/FutureVision";
+import Collaborators from "@/components/Collaborators";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ContactDock from "@/components/ContactDock";
@@ -34,6 +35,7 @@ export default function Home() {
         <MedicalEducation />
         <Skills />
         <FutureVision />
+        <Collaborators />
         <Contact />
       </main>
       <Footer />

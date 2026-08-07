@@ -10,6 +10,8 @@ import {
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import { about } from "@/lib/data";
+import { asset } from "@/lib/basePath";
+import Image from "next/image";
 
 /**
  * Keyed by label rather than index, so reordering `about.interests` can't
@@ -57,6 +59,19 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      <Reveal delay={0.12}>
+        <figure className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-[1.5rem] border border-line bg-canvas-raised shadow-[0_18px_50px_-28px_color-mix(in_srgb,var(--ink)_40%,transparent)]">
+          <Image
+            src={asset("/hero-clinical.png")}
+            alt="Clinical work in a hospital setting"
+            width={1600}
+            height={639}
+            sizes="(max-width: 1280px) 100vw, 64rem"
+            className="h-auto w-full object-cover"
+          />
+        </figure>
+      </Reveal>
 
       <Reveal delay={0.15}>
         <div className="mt-16 border-t border-line pt-10">

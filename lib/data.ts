@@ -178,7 +178,44 @@ export const leadership = [
     description:
       "Selected for a health leadership programme focused on collaborative problem-solving and cross-border academic partnership in healthcare.",
   },
+  {
+    role: "Academic Advisor",
+    org: "Akademia Polskiego · Poland",
+    description:
+      "In partnership with established educators in Poland, providing academic advisory services and guidance on educational pathways for students navigating the route into medicine.",
+  },
 ] as const;
+
+// ── Collaborators ────────────────────────────────────────────────────────
+// The people behind the academic advisory work above, and the partner
+// organisation it runs through.
+export const collaborators = {
+  intro:
+    "The advisory work above runs through a small, close partnership rather than a formal institution — built with people already established in Poland's academic community.",
+  partner: {
+    name: "Akademia Polskiego",
+    description:
+      "A Poland-based academy for language and academic preparation, and the partner organisation this advisory work is built alongside.",
+    href: "https://akademiapolskiego.com/en/home-page/",
+  },
+  people: [
+    {
+      name: "Kishore Muthukumar",
+      initials: "KM",
+      role: "Academic Advisor",
+    },
+    {
+      name: "Raakesh",
+      initials: "R",
+      role: "Academic Advisor",
+    },
+    {
+      name: "Dominika Lewandowska",
+      initials: "DL",
+      role: "Founder, Akademia Polskiego",
+    },
+  ],
+} as const;
 
 export const conferences = [
   {
@@ -537,9 +574,9 @@ export const journey: JourneyItem[] = [
     slug: "prabhu-mircim",
     chapter: "meetings",
     category: "Mentorship",
-    title: "With Prabhu Mathiyalagan",
+    title: "With Dr. Prabhu Mathiyalagan, PhD",
     caption:
-      "At MIRCIM 2026 with Prabhu Mathiyalagan — researcher and founder, and one of the more useful conversations of the conference.",
+      "At MIRCIM 2026 with Dr. Prabhu Mathiyalagan, PhD — researcher and founder, and one of the more useful conversations of the conference.",
     links: [
       {
         label: "ResearchGate",

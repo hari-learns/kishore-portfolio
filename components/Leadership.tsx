@@ -4,10 +4,24 @@ import Reveal from "@/components/Reveal";
 import EcgLine from "@/components/EcgLine";
 import PulseMark from "@/components/PulseMark";
 import { leadership } from "@/lib/data";
+import { asset } from "@/lib/basePath";
+import Image from "next/image";
 
 export default function Leadership() {
   return (
     <Section id="leadership">
+      <Reveal>
+        <figure className="mb-16 overflow-hidden rounded-[1.5rem] border border-line bg-canvas-raised shadow-[0_18px_50px_-28px_color-mix(in_srgb,var(--ink)_40%,transparent)]">
+          <Image
+            src={asset("/journey-collage.png")}
+            alt="A journey through clinical practice, education, and research"
+            width={1600}
+            height={800}
+            sizes="(max-width: 1280px) 100vw, 72rem"
+            className="h-auto w-full object-cover"
+          />
+        </figure>
+      </Reveal>
       <SectionHeading
         eyebrow="Leadership"
         icon={HeartHandshake}
