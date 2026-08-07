@@ -205,7 +205,7 @@ export const collaborators = {
       role: "Academic Advisor",
     },
     {
-      name: "Raakesh",
+      name: "Raakesh Naidu",
       initials: "R",
       role: "Academic Advisor",
       href: "https://www.linkedin.com/in/raakesh-naidu-36b420268/",

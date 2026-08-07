@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { Handshake, ArrowUpRight } from "lucide-react";
 import Section, { SectionHeading } from "@/components/Section";
 import Reveal from "@/components/Reveal";
 import { collaborators } from "@/lib/data";
+import { asset } from "@/lib/basePath";
 
 export default function Collaborators() {
   const { intro, partner, people } = collaborators;
@@ -15,7 +17,23 @@ export default function Collaborators() {
         intro={intro}
       />
 
-      <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3">
+      {/* The three collaborators together, in front of the partner's own
+          banner — establishes the partnership before the cards name each
+          person individually. */}
+      <Reveal delay={0.05}>
+        <figure className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-[1.75rem] border border-line shadow-[0_18px_50px_-28px_color-mix(in_srgb,var(--ink)_40%,transparent)]">
+          <Image
+            src={asset("/collaborators.jpg")}
+            alt="Kishore Muthukumar, Dominika Lewandowska, and Raakesh Naidu at Akademia Polskiego"
+            width={1600}
+            height={860}
+            sizes="(max-width: 1024px) 100vw, 48rem"
+            className="h-auto w-full object-cover"
+          />
+        </figure>
+      </Reveal>
+
+      <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
         {people.map((person, i) => {
           const href = "href" in person ? person.href : undefined;
           const Card = href ? "a" : "div";
