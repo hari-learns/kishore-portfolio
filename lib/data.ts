@@ -208,6 +208,7 @@ export const collaborators = {
       name: "Raakesh",
       initials: "R",
       role: "Academic Advisor",
+      href: "https://www.linkedin.com/in/raakesh-naidu-36b420268/",
     },
     {
       name: "Dominika Lewandowska",
