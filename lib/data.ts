@@ -203,6 +203,7 @@ export const collaborators = {
       name: "Kishore Muthukumar",
       initials: "KM",
       role: "Academic Advisor",
+      href: "https://www.linkedin.com/in/kishore-muthukumar-654925246/",
     },
     {
       name: "Raakesh Naidu",
@@ -214,6 +215,7 @@ export const collaborators = {
       name: "Dominika Lewandowska",
       initials: "DL",
       role: "Founder, Akademia Polskiego",
+      href: "https://akademiapolskiego.com/en/home-page/",
     },
   ],
 } as const;
