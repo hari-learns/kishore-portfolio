@@ -220,35 +220,6 @@ export const collaborators = {
   ],
 } as const;
 
-// ── People Who Inspire ──────────────────────────────────────────────────
-// Not a professional credit like Collaborators above — the people who
-// shaped things personally as well as academically.
-export const peopleWhoInspire = {
-  intro:
-    "A few people became part of both the career and the life alongside it — not just academically, but personally too.",
-  featured: {
-    slug: "inspire-featured",
-    name: "Dominika Lewandowska",
-    role: "Founder, Akademia Polskiego",
-    caption:
-      "Guidance that reached well past the classroom — one of the people this journey wouldn't read the same without.",
-  },
-  gallery: [
-    {
-      slug: "inspire-dominika-1",
-      caption: "At her desk, mid-thought, in the middle of an ordinary working day.",
-    },
-    {
-      slug: "inspire-dominika-2",
-      caption: "The same afternoon — the kind of quiet focus that made the mentorship work.",
-    },
-    {
-      slug: "inspire-campus",
-      caption: "On campus in Łódź, not long after.",
-    },
-  ],
-} as const;
-
 export const conferences = [
   {
     year: "2025",
@@ -391,6 +362,13 @@ export const journeyChapters = [
     period: "Ongoing",
     blurb:
       "The individual conversations — with physicians and scientists — that mattered as much as the sessions themselves.",
+  },
+  {
+    id: "inspire",
+    label: "People Who Inspire",
+    period: "Ongoing",
+    blurb:
+      "People who became part of both the career and the life alongside it — personally as well as academically.",
   },
   {
     id: "workshops",
@@ -625,6 +603,38 @@ export const journey: JourneyItem[] = [
     caption:
       "With Prof. Katarzyna Taran, marking the launch of her book on integrated pathology — an honour to have helped organise her workshop.",
     featured: true,
+  },
+
+  // ── People Who Inspire ───────────────────────────────────────────────────
+  {
+    slug: "inspire-featured",
+    chapter: "inspire",
+    category: "Mentorship",
+    title: "With Dominika Lewandowska",
+    caption:
+      "Guidance that reached well past the classroom — one of the people this journey wouldn't read the same without.",
+    featured: true,
+  },
+  {
+    slug: "inspire-dominika-1",
+    chapter: "inspire",
+    category: "Portrait",
+    title: "At her desk",
+    caption: "Mid-thought, in the middle of an ordinary working day.",
+  },
+  {
+    slug: "inspire-dominika-2",
+    chapter: "inspire",
+    category: "Portrait",
+    title: "A quiet afternoon",
+    caption: "The same afternoon — the kind of quiet focus that made the mentorship work.",
+  },
+  {
+    slug: "inspire-campus",
+    chapter: "inspire",
+    category: "Campus",
+    title: "On campus, Łódź",
+    caption: "Not long after.",
   },
 
   // ── Workshops & Teaching ─────────────────────────────────────────────────

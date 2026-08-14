@@ -9,7 +9,6 @@ import Leadership from "@/components/Leadership";
 import Conferences from "@/components/Conferences";
 import Podcast from "@/components/Podcast";
 import Journey from "@/components/Journey";
-import PeopleWhoInspire from "@/components/PeopleWhoInspire";
 import MedicalEducation from "@/components/MedicalEducation";
 import Skills from "@/components/Skills";
 import FutureVision from "@/components/FutureVision";
@@ -33,7 +32,6 @@ export default function Home() {
         <Conferences />
         <Podcast />
         <Journey />
-        <PeopleWhoInspire />
         <MedicalEducation />
         <Skills />
         <FutureVision />
