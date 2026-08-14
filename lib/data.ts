@@ -629,13 +629,6 @@ export const journey: JourneyItem[] = [
     title: "A quiet afternoon",
     caption: "The same afternoon — the kind of quiet focus that made the mentorship work.",
   },
-  {
-    slug: "inspire-campus",
-    chapter: "inspire",
-    category: "Campus",
-    title: "On campus, Łódź",
-    caption: "Not long after.",
-  },
 
   // ── Workshops & Teaching ─────────────────────────────────────────────────
   {
