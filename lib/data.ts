@@ -220,6 +220,35 @@ export const collaborators = {
   ],
 } as const;
 
+// ── People Who Inspire ──────────────────────────────────────────────────
+// Not a professional credit like Collaborators above — the people who
+// shaped things personally as well as academically.
+export const peopleWhoInspire = {
+  intro:
+    "A few people became part of both the career and the life alongside it — not just academically, but personally too.",
+  featured: {
+    slug: "inspire-featured",
+    name: "Dominika Lewandowska",
+    role: "Founder, Akademia Polskiego",
+    caption:
+      "Guidance that reached well past the classroom — one of the people this journey wouldn't read the same without.",
+  },
+  gallery: [
+    {
+      slug: "inspire-dominika-1",
+      caption: "At her desk, mid-thought, in the middle of an ordinary working day.",
+    },
+    {
+      slug: "inspire-dominika-2",
+      caption: "The same afternoon — the kind of quiet focus that made the mentorship work.",
+    },
+    {
+      slug: "inspire-campus",
+      caption: "On campus in Łódź, not long after.",
+    },
+  ],
+} as const;
+
 export const conferences = [
   {
     year: "2025",
