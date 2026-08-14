@@ -368,7 +368,7 @@ export const journeyChapters = [
     label: "People Who Inspire",
     period: "Ongoing",
     blurb:
-      "People who became part of both the career and the life alongside it — personally as well as academically.",
+      "Ms Joanna Wieremiejewicz-Podkościelna has been far more than a mentor — through student activities, workshops, and the decisions that shaped where this journey is headed, she has been someone who encouraged him to believe in himself and keep moving forward. Some people become part of a journey; a few help shape it. Joanna has been one of those people.",
   },
   {
     id: "workshops",
@@ -610,20 +610,20 @@ export const journey: JourneyItem[] = [
     slug: "inspire-featured",
     chapter: "inspire",
     category: "Mentorship",
-    title: "With Dominika Lewandowska",
+    title: "With Joanna Wieremiejewicz-Podkościelna",
     caption:
       "Guidance that reached well past the classroom — one of the people this journey wouldn't read the same without.",
     featured: true,
   },
   {
-    slug: "inspire-dominika-1",
+    slug: "inspire-joanna-1",
     chapter: "inspire",
     category: "Portrait",
     title: "At her desk",
     caption: "Mid-thought, in the middle of an ordinary working day.",
   },
   {
-    slug: "inspire-dominika-2",
+    slug: "inspire-joanna-2",
     chapter: "inspire",
     category: "Portrait",
     title: "A quiet afternoon",
